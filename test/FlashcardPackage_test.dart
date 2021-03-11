@@ -47,9 +47,11 @@ void main() {
     });
 
     test('Validar o metodo remove', () {
-      flashcardList.remove(card1);
+      Flashcard cardTeste =
+          new Flashcard(wordPair1.asLowerCase, wordPair1.asUpperCase);
+      flashcardList.remove(cardTeste);
 
-      expect(flashcardList.checkContains(card1), false);
+      expect(flashcardList.checkContains(cardTeste), false);
     });
 
     test('Valida se o metodo getCard', () {

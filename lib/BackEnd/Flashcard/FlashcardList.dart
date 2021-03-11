@@ -34,7 +34,8 @@ class FlashcardList {
     // Remove todas as instancias de um Flashcard da lista
     int i = 0;
     while (i < this._flashcardList.length) {
-      if (card == this._flashcardList[i]) {
+      if (card.getFace() == this._flashcardList[i].getFace() &&
+          card.getBack() == this._flashcardList[i].getBack()) {
         this._flashcardList.removeAt(i);
       } else {
         i++;
