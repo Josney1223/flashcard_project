@@ -16,6 +16,16 @@ class Flashcard {
     this._back = inputBack;
   }
 
+  void setFace(String front) {
+    // Retorna a frente do Flashcard
+    this._face = front;
+  }
+
+  void setBack(String back) {
+    // Retorna o verso do Flashcard
+    this._back = back;
+  }
+
   String getFace() {
     // Retorna a frente do Flashcard
     return this._face;
