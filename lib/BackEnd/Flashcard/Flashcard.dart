@@ -12,8 +12,7 @@ class Flashcard {
 
   String _name, _face, _back;
 
-  Flashcard(String inputName, String inputFace, String inputBack) {
-    this._name = inputName;
+  Flashcard(String inputFace, String inputBack) {
     this._face = inputFace;
     this._back = inputBack;
   }
@@ -27,9 +26,12 @@ class Flashcard {
     // Retorna o verso do Flashcard
     return this._back;
   }
+<<<<<<< HEAD
 
   String getName() {
     // Retorna o nome do Flashcard
     return this._name;
   }
+=======
+>>>>>>> package-GameplayLoop
 }
