@@ -14,6 +14,8 @@ samples, guidance on mobile development, and a full API reference.
 # Projeto de Arquitetura de Software: flashcard_project
 Aplicação desktop e mobile de Flashcards
 
+Arquitetura: https://app.creately.com/diagram/sbTRet4p9VJ/edit
+
 ## Grupo
 Caroline, José, Lessa e Lucas
 
