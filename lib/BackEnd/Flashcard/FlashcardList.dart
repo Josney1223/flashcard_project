@@ -3,6 +3,7 @@ import "dart:core";
 import "dart:math";
 
 class FlashcardList {
+  // Classe que contém uma lista
   List<Flashcard> flashcardList;
 
   FlashcardList() {
@@ -24,7 +25,7 @@ class FlashcardList {
     }
   }
 
-  bool checkContais(Flashcard card) {
+  bool checkContains(Flashcard card) {
     int i = 0;
     bool contains = false;
     while (i < this.flashcardList.length && contains == false) {
@@ -41,10 +42,12 @@ class FlashcardList {
   }
 
   Flashcard getCard(int index) {
+    // Retorna o Flashcard que está na posicao 'index' da List
     return this.flashcardList[index];
   }
 
   Flashcard getRandomCard() {
+    // Retorna um Flashcard aleatório da List
     Random random = Random();
     int randomNumber = random.nextInt(this.flashcardList.length);
     return this.flashcardList[randomNumber];

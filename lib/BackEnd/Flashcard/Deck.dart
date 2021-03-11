@@ -41,6 +41,7 @@ class Deck {
 
   void insertCard(Flashcard card) {
     this.deck.add(card);
+    this.qtdFlashcards++;
   }
 
   void insertCards(List<Flashcard> cards) {
@@ -50,6 +51,13 @@ class Deck {
   }
 
   void removeCard(Flashcard card) {
+    reset();
     this.deck.remove(card);
+    this.qtdFlashcards--;
+  }
+
+  bool checkContains(Flashcard card) {
+    reset();
+    return this.deck.checkContains(card);
   }
 }
