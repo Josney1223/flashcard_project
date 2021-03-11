@@ -67,13 +67,12 @@ class Deck {
     this._qtdFlashcards++;
   }
 
-  /*
-  void insertCards(List<Flashcard> cards) {
-    for (var i = 0; i < cards.length; i++) {
-      this._deck.add(cards[i]);
+  void insertCards(FlashcardList cards) {
+    for (var i = 0; i < cards.lenght(); i++) {
+      this._deck.add(cards.getCard(i));
     }
   }
- */
+
   void removeCard(Flashcard card) {
     // Remove um Flashcard em this._deck
     reset();
