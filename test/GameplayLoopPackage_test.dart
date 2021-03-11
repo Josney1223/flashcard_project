@@ -9,7 +9,7 @@ int main() {
 
     test("Validar a criacao de um GameplayLoop", () {
       Deck deck = new Deck("StarterDeck");
-      Flashcard card = new Flashcard("Palavras", "Face", "Back");
+      Flashcard card = new Flashcard("Face", "Back");
       deck.insertCard(card);
 
       game = new GameplayLoop(deck);
@@ -24,10 +24,10 @@ int main() {
 
     test("Validar o metodo setDeck", () {
       Deck newDeck = new Deck("SecondDeck");
-      Flashcard card = new Flashcard("Palavras2", "Face2", "Back2");
+      Flashcard card = new Flashcard("Face2", "Back2");
       newDeck.insertCard(card);
       game.setDeck(newDeck);
-      expect(game.nextCard().getName(), "Palavras2");
+      expect(game.nextCard().getBack(), "Back2");
     });
 
     test("Validar o metodo nextCard", () {

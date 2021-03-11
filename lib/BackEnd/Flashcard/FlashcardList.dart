@@ -29,7 +29,8 @@ class FlashcardList {
     int i = 0;
     bool contains = false;
     while (i < this._flashcardList.length && contains == false) {
-      if (card == this._flashcardList[i]) {
+      if (card.getFace() == this._flashcardList[i].getFace() &&
+          card.getBack() == this._flashcardList[i].getBack()) {
         contains = true;
       }
       i++;
