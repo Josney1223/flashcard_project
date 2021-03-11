@@ -2,62 +2,62 @@ import 'Flashcard.dart';
 import 'FlashcardList.dart';
 
 class Deck {
-  FlashcardList deck;
-  FlashcardList grave;
-  int qtdFlashcards;
-  String deckName;
+  FlashcardList _deck;
+  FlashcardList _grave;
+  int _qtdFlashcards;
+  String _deckName;
 
   Deck(String name) {
-    this.deckName = name;
-    this.deck = new FlashcardList();
-    this.grave = new FlashcardList();
-    this.qtdFlashcards = this.deck.lenght() + this.grave.lenght();
+    this._deckName = name;
+    this._deck = new FlashcardList();
+    this._grave = new FlashcardList();
+    this._qtdFlashcards = this._deck.lenght() + this._grave.lenght();
   }
 
   void reset() {
-    for (var i = 0; i < this.grave.lenght(); i++) {
-      this.deck.add(this.grave.getCard(i));
+    for (var i = 0; i < this._grave.lenght(); i++) {
+      this._deck.add(this._grave.getCard(i));
     }
-    this.grave = new FlashcardList();
+    this._grave = new FlashcardList();
   }
 
   String getName() {
-    return this.deckName;
+    return this._deckName;
   }
 
   int getQtd() {
-    return this.qtdFlashcards;
+    return this._qtdFlashcards;
   }
 
   Flashcard pullCard() {
-    if (this.deck.lenght() == 0) {
+    if (this._deck.lenght() == 0) {
       reset();
     }
-    Flashcard card = this.deck.getRandomCard();
-    this.deck.remove(card);
-    this.grave.add(card);
+    Flashcard card = this._deck.getRandomCard();
+    this._deck.remove(card);
+    this._grave.add(card);
     return card;
   }
 
   void insertCard(Flashcard card) {
-    this.deck.add(card);
-    this.qtdFlashcards++;
+    this._deck.add(card);
+    this._qtdFlashcards++;
   }
 
   void insertCards(List<Flashcard> cards) {
     for (var i = 0; i < cards.length; i++) {
-      this.deck.add(cards[i]);
+      this._deck.add(cards[i]);
     }
   }
 
   void removeCard(Flashcard card) {
     reset();
-    this.deck.remove(card);
-    this.qtdFlashcards--;
+    this._deck.remove(card);
+    this._qtdFlashcards--;
   }
 
   bool checkContains(Flashcard card) {
     reset();
-    return this.deck.checkContains(card);
+    return this._deck.checkContains(card);
   }
 }

@@ -1,21 +1,21 @@
 class Flashcard {
-  String name, face, back;
+  String _name, _face, _back;
 
   Flashcard(String inputName, String inputFace, String inputBack) {
-    this.name = inputName;
-    this.face = inputFace;
-    this.back = inputBack;
+    this._name = inputName;
+    this._face = inputFace;
+    this._back = inputBack;
   }
 
   String getFace() {
-    return this.face;
+    return this._face;
   }
 
   String getBack() {
-    return this.back;
+    return this._back;
   }
 
   String getName() {
-    return this.back;
+    return this._name;
   }
 }

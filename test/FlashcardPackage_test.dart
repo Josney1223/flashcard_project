@@ -12,9 +12,9 @@ void main() {
       Flashcard card = new Flashcard("palavras", lowerCase, upperCase);
 
       bool result = false;
-      if (card.face == lowerCase &&
-          card.back == upperCase &&
-          card.name == "palavras") {
+      if (card.getFace() == lowerCase &&
+          card.getBack() == upperCase &&
+          card.getName() == "palavras") {
         result = true;
       }
 
@@ -53,12 +53,17 @@ void main() {
 
       expect(flashcardList.checkContains(card1), false);
     });
-/*
+
     test('Valida se o metodo getCard', () {
       Flashcard c = flashcardList.getCard(0);
-      expect(c, );
+      bool result = false;
+
+      if (c is Flashcard) {
+        result = true;
+      }
+      expect(result, true);
     });
-*/
+
     test('Validar o metodo getRandomCard', () {
       flashcardList.add(card1);
       flashcardList.add(card2);
