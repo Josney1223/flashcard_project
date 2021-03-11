@@ -18,8 +18,9 @@ class FlashcardList {
     while (i < this.flashcardList.length) {
       if (card == this.flashcardList[i]) {
         this.flashcardList.removeAt(i);
+      } else {
+        i++;
       }
-      i++;
     }
   }
 

@@ -30,7 +30,13 @@ class Deck {
   }
 
   Flashcard pullCard() {
-    return this.deck.getRandomCard();
+    if (this.deck.lenght() == 0) {
+      reset();
+    }
+    Flashcard card = this.deck.getRandomCard();
+    this.deck.remove(card);
+    this.grave.add(card);
+    return card;
   }
 
   void insertCard(Flashcard card) {
