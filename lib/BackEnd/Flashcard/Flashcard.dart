@@ -1,16 +1,15 @@
 class Flashcard {
   /*
   Classe que contém um flashcard, para ajudar na identificacao e reduzir o 
-  número de duplicatas, ele contém um nome (this._name), além da sua frente 
-  (this._face) e sua parte de tras (this._back).  
+  número de duplicatas, ele contém sue frente (this._face) e seu verso
+  (this._back).  
 
   Métodos:
   -> String getFace()
   -> String getBack()
-  -> String getName()
   */
 
-  String _name, _face, _back;
+  String _face, _back;
 
   Flashcard(String inputFace, String inputBack) {
     this._face = inputFace;
@@ -26,12 +25,4 @@ class Flashcard {
     // Retorna o verso do Flashcard
     return this._back;
   }
-<<<<<<< HEAD
-
-  String getName() {
-    // Retorna o nome do Flashcard
-    return this._name;
-  }
-=======
->>>>>>> package-GameplayLoop
 }
