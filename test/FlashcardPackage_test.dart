@@ -11,9 +11,14 @@ void main() {
       String upperCase = wordPair.asUpperCase, lowerCase = wordPair.asLowerCase;
       Flashcard card = new Flashcard("palavras", lowerCase, upperCase);
 
-      expect(card.face, lowerCase);
-      expect(card.back, upperCase);
-      expect(card.name, "palavras");
+      bool result = false;
+      if (card.face == lowerCase &&
+          card.back == upperCase &&
+          card.name == "palavras") {
+        result = true;
+      }
+
+      expect(result, true);
     });
   });
 
