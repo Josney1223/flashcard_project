@@ -15,6 +15,7 @@ samples, guidance on mobile development, and a full API reference.
 Aplicação desktop e mobile de Flashcards
 
 Arquitetura: https://app.creately.com/diagram/sbTRet4p9VJ/edit
+Fluxograma de Uso: https://app.creately.com/diagram/HFhtzbQjffp/edit
 
 ## Grupo
 Caroline, José, Lessa e Lucas
