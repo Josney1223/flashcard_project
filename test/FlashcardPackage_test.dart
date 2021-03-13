@@ -9,12 +9,10 @@ void main() {
     test('Flashcard: Validar a criacao de um Flashcard', () {
       WordPair wordPair = new WordPair.random();
       String upperCase = wordPair.asUpperCase, lowerCase = wordPair.asLowerCase;
-      Flashcard card = new Flashcard("palavras", lowerCase, upperCase);
+      Flashcard card = new Flashcard(lowerCase, upperCase);
 
       bool result = false;
-      if (card.getFace() == lowerCase &&
-          card.getBack() == upperCase &&
-          card.getName() == "palavras") {
+      if (card.getFace() == lowerCase && card.getBack() == upperCase) {
         result = true;
       }
 
@@ -30,11 +28,11 @@ void main() {
     final WordPair wordPair2 = new WordPair.random();
 
     final Flashcard card =
-        new Flashcard("palavras", wordPair.asLowerCase, wordPair.asUpperCase);
-    final Flashcard card1 = new Flashcard(
-        "palavras1", wordPair1.asLowerCase, wordPair1.asUpperCase);
-    final Flashcard card2 = new Flashcard(
-        "palavras2", wordPair2.asLowerCase, wordPair2.asUpperCase);
+        new Flashcard(wordPair.asLowerCase, wordPair.asUpperCase);
+    final Flashcard card1 =
+        new Flashcard(wordPair1.asLowerCase, wordPair1.asUpperCase);
+    final Flashcard card2 =
+        new Flashcard(wordPair2.asLowerCase, wordPair2.asUpperCase);
 
     test('Validar a criacao da lista e o metodo add', () {
       flashcardList.add(card);
@@ -49,9 +47,11 @@ void main() {
     });
 
     test('Validar o metodo remove', () {
-      flashcardList.remove(card1);
+      Flashcard cardTeste =
+          new Flashcard(wordPair1.asLowerCase, wordPair1.asUpperCase);
+      flashcardList.remove(cardTeste);
 
-      expect(flashcardList.checkContains(card1), false);
+      expect(flashcardList.checkContains(cardTeste), false);
     });
 
     test('Valida se o metodo getCard', () {
@@ -85,17 +85,17 @@ void main() {
     final WordPair wordPair5 = new WordPair.random();
 
     final Flashcard card =
-        new Flashcard("palavras", wordPair.asLowerCase, wordPair.asUpperCase);
-    final Flashcard card1 = new Flashcard(
-        "palavras1", wordPair1.asLowerCase, wordPair1.asUpperCase);
-    final Flashcard card2 = new Flashcard(
-        "palavras2", wordPair2.asLowerCase, wordPair2.asUpperCase);
-    final Flashcard card3 = new Flashcard(
-        "palavras3", wordPair3.asLowerCase, wordPair3.asUpperCase);
-    final Flashcard card4 = new Flashcard(
-        "palavras4", wordPair4.asLowerCase, wordPair4.asUpperCase);
-    final Flashcard card5 = new Flashcard(
-        "palavras5", wordPair5.asLowerCase, wordPair5.asUpperCase);
+        new Flashcard(wordPair.asLowerCase, wordPair.asUpperCase);
+    final Flashcard card1 =
+        new Flashcard(wordPair1.asLowerCase, wordPair1.asUpperCase);
+    final Flashcard card2 =
+        new Flashcard(wordPair2.asLowerCase, wordPair2.asUpperCase);
+    final Flashcard card3 =
+        new Flashcard(wordPair3.asLowerCase, wordPair3.asUpperCase);
+    final Flashcard card4 =
+        new Flashcard(wordPair4.asLowerCase, wordPair4.asUpperCase);
+    final Flashcard card5 =
+        new Flashcard(wordPair5.asLowerCase, wordPair5.asUpperCase);
 
     test("Validar a criacao do deck", () {
       deck.insertCard(card);
