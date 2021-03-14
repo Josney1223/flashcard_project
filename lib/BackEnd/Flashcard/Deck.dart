@@ -40,6 +40,25 @@ class Deck {
     this._grave = new FlashcardList();
   }
 
+  void insertCard(Flashcard card) {
+    // Insere um Flashcard em this._deck
+    this._deck.add(card);
+    this._qtdFlashcards++;
+  }
+
+  void insertCards(FlashcardList cards) {
+    for (var i = 0; i < cards.lenght(); i++) {
+      this._deck.add(cards.getCard(i));
+    }
+  }
+
+  void removeCard(Flashcard card) {
+    // Remove um Flashcard em this._deck
+    reset();
+    this._deck.remove(card);
+    this._qtdFlashcards--;
+  }
+
   String getName() {
     // Retorna o nome do baralho
     return this._deckName;
@@ -61,29 +80,15 @@ class Deck {
     return card;
   }
 
-  void insertCard(Flashcard card) {
-    // Insere um Flashcard em this._deck
-    this._deck.add(card);
-    this._qtdFlashcards++;
-  }
-
-  void insertCards(FlashcardList cards) {
-    for (var i = 0; i < cards.lenght(); i++) {
-      this._deck.add(cards.getCard(i));
-    }
-  }
-
-  void removeCard(Flashcard card) {
-    // Remove um Flashcard em this._deck
-    reset();
-    this._deck.remove(card);
-    this._qtdFlashcards--;
-  }
-
   bool checkContains(Flashcard card) {
     // Retorna true caso tenha encontrado uma cópia identica do Flashcard
     // dentro do deck
     reset();
     return this._deck.checkContains(card);
+  }
+
+  FlashcardList getCopy() {
+    reset();
+    return this._deck;
   }
 }
