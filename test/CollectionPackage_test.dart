@@ -135,5 +135,20 @@ void main() {
         expect(resultObject.decks[i].getQtd(), colecao.decks[i].getQtd());
       }
     });
+
+    test('Collection: Validar o método saveFile', () {
+      Collection colecao = new Collection();
+      String deckName = 'Novo Deck';
+      int adicionar = 1;
+      Flashcard card = new Flashcard('Gato', 'Felis catus');
+
+      colecao.createDeck(deckName);
+
+      // Adicionar uma carta ao deck
+      colecao.editDeck(deckName, adicionar, card);
+
+      // Salvar
+      colecao.saveFile();
+    });
   });
 }

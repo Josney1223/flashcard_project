@@ -1,4 +1,5 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
+import 'package:flashcard_project/BackEnd/Collection/SaveLoad.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -124,8 +125,9 @@ class Collection extends ChangeNotifier {
     }
   }
 
-  void saveFile(List<Deck> decks) {
+  void saveFile() {
     // Chama a função saveFile da classe SaveLoad
+    SaveLoad().saveFile(jsonEncode(this.decks));
   }
 
   List<Deck> loadFile() {
