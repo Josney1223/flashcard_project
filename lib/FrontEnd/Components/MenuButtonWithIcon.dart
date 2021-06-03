@@ -14,24 +14,22 @@ class MenuButtonWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: 100),
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.of(context).pushNamed(this._action);
-        }, 
-        style: ElevatedButton.styleFrom(
-          primary: _color, 
-          elevation: 8, 
-          shadowColor: Colors.grey, 
-          padding: EdgeInsets.all(20),
-          textStyle: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          )
-        ),
-        child: IconAndTextBox(this._title, this._imgPath),
-      )
-    );
+        constraints: BoxConstraints(minWidth: 100),
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(this._action);
+          },
+          style: ElevatedButton.styleFrom(
+              primary: _color,
+              elevation: 8,
+              shadowColor: Colors.grey,
+              padding: EdgeInsets.all(20),
+              textStyle: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              )),
+          child: IconAndTextBox(this._title, this._imgPath),
+        ));
   }
 }
 
@@ -47,16 +45,15 @@ class IconAndTextBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 100),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Image(image: AssetImage(this._imgPath), width: 50.0, height: 50.0),
-          SizedBox(height: 10),
-          Text(this._title),
-        ],
-      )
-    );
+        constraints: BoxConstraints(maxWidth: 100),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image(image: AssetImage(this._imgPath), width: 50.0, height: 50.0),
+            SizedBox(height: 10),
+            Text(this._title),
+          ],
+        ));
   }
 }

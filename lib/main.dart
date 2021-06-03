@@ -4,6 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
 import 'package:flashcard_project/FrontEnd/Menu.dart';
+import 'package:flashcard_project/FrontEnd/Sobre.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'Flashcard APP',
       home: Menu(),
       routes: {
-        '/deckSelection': (context) => DeckSelectionView()
+        '/deckSelection': (context) => DeckSelectionView(),
+        '/sobre': (context) => Sobre()
       },
     );
   }
