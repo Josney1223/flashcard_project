@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 
 /*
 * Tela SOBBRE do aplicativo
@@ -60,7 +61,8 @@ class Sobre extends StatelessWidget {
                     SizedBox(height: 0),
                     SizedBox(height: 0),
                     Text('"Icons made by Freepik from www.flaticon.com"'),
-                    SizedBox(height: 5),
+                    SizedBox(height: 40),
+                    GoBackButton(),
                   ],
                 ))));
   }

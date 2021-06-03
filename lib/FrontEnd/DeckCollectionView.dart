@@ -2,9 +2,9 @@ import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:flutter/material.dart';
 
 /*
-* Tela de seleção de deck (Selecione um Deck) com listagem dos decks
+* Tela de visualização de decks
 */
-class DeckSelectionView extends StatelessWidget {
+class DeckCollectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +15,7 @@ class DeckSelectionView extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Text(
-                "SELECIONE UM DECK",
+                "COLEÇÃO DE DECKS",
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,

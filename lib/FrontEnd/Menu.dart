@@ -27,7 +27,7 @@ class Menu extends StatelessWidget {
                       'COLEÇÃO',
                       Color.fromRGBO(183, 235, 209, 1),
                       'assets/paper.png',
-                      '/deckSelection'),
+                      '/deckCollection'),
                   SizedBox(height: 25),
                   MenuButtonWithIcon('SOBRE', Color.fromRGBO(255, 224, 162, 1),
                       'assets/information.png', '/sobre'),
