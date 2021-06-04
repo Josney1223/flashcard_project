@@ -38,7 +38,7 @@ class DeckNameView extends StatelessWidget {
     Deck deck1 = new Deck('"nome do deck"');
     Deck deck2 = new Deck('"nome do deck"');
     deckList = [];
-    //deckList.add(deck1);
+    deckList.add(deck1);
     deckList.add(deck2);
     deckList.add(deck2);
     deckList.add(deck2);
