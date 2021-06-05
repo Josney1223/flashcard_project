@@ -1,3 +1,7 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'Flashcard.g.dart';
+
+@JsonSerializable()
 class Flashcard {
   /*
   Classe que contém um flashcard, para ajudar na identificacao e reduzir o 
@@ -9,30 +13,32 @@ class Flashcard {
   -> String getBack()
   */
 
-  String _face, _back;
+  String face, back;
 
-  Flashcard(String inputFace, String inputBack) {
-    this._face = inputFace;
-    this._back = inputBack;
-  }
+  Flashcard(this.face, this.back);
 
   void setFace(String front) {
     // Retorna a frente do Flashcard
-    this._face = front;
+    this.face = front;
   }
 
   void setBack(String back) {
     // Retorna o verso do Flashcard
-    this._back = back;
+    this.back = back;
   }
 
   String getFace() {
     // Retorna a frente do Flashcard
-    return this._face;
+    return this.face;
   }
 
   String getBack() {
     // Retorna o verso do Flashcard
-    return this._back;
+    return this.back;
   }
+
+  factory Flashcard.fromJson(Map<String, dynamic> json) =>
+      _$FlashcardFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FlashcardToJson(this);
 }

@@ -1,6 +1,10 @@
 import 'Flashcard.dart';
 import 'FlashcardList.dart';
 
+import 'package:json_annotation/json_annotation.dart';
+part 'Deck.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Deck {
   /*
     Classe que gerencia um baralho completo de Flashcards, sendo esse composto 
@@ -19,64 +23,65 @@ class Deck {
     -> bool checkContains(Flashcard card)
   */
 
-  FlashcardList _deck;
-  FlashcardList _grave;
-  int _qtdFlashcards;
-  String _deckName;
+  FlashcardList deck;
+  FlashcardList grave;
+  int qtdFlashcards;
+  String deckName;
 
-  Deck(String name) {
-    this._deckName = name;
-    this._deck = new FlashcardList();
-    this._grave = new FlashcardList();
-    this._qtdFlashcards = this._deck.lenght() + this._grave.lenght();
+  Deck(this.deckName, {this.deck, this.grave, this.qtdFlashcards}) {
+    this.deck = (deck == null) ? new FlashcardList() : deck;
+    this.grave = (grave == null) ? new FlashcardList() : grave;
+    this.qtdFlashcards = (qtdFlashcards == null)
+        ? this.deck.lenght() + this.grave.lenght()
+        : qtdFlashcards;
   }
 
   void reset() {
     // Coloca todos os Flashcards contidos em this._grave em this._deck e
     // reinicia o this.grave
-    for (var i = 0; i < this._grave.lenght(); i++) {
-      this._deck.add(this._grave.getCard(i));
+    for (var i = 0; i < this.grave.lenght(); i++) {
+      this.deck.add(this.grave.getCard(i));
     }
-    this._grave = new FlashcardList();
+    this.grave = new FlashcardList();
   }
 
   void insertCard(Flashcard card) {
     // Insere um Flashcard em this._deck
-    this._deck.add(card);
-    this._qtdFlashcards++;
+    this.deck.add(card);
+    this.qtdFlashcards++;
   }
 
   void insertCards(FlashcardList cards) {
     for (var i = 0; i < cards.lenght(); i++) {
-      this._deck.add(cards.getCard(i));
+      this.deck.add(cards.getCard(i));
     }
   }
 
   void removeCard(Flashcard card) {
     // Remove um Flashcard em this._deck
     reset();
-    this._deck.remove(card);
-    this._qtdFlashcards--;
+    this.deck.remove(card);
+    this.qtdFlashcards--;
   }
 
   String getName() {
     // Retorna o nome do baralho
-    return this._deckName;
+    return this.deckName;
   }
 
   int getQtd() {
     // Retorna o tamanho do baralho
-    return this._qtdFlashcards;
+    return this.qtdFlashcards;
   }
 
   Flashcard pullCard() {
     // Remove um Flashcard do this._deck, insere ele no this._grave e o retorna
-    if (this._deck.lenght() == 0) {
+    if (this.deck.lenght() == 0) {
       reset();
     }
-    Flashcard card = this._deck.getRandomCard();
-    this._deck.remove(card);
-    this._grave.add(card);
+    Flashcard card = this.deck.getRandomCard();
+    this.deck.remove(card);
+    this.grave.add(card);
     return card;
   }
 
@@ -84,11 +89,15 @@ class Deck {
     // Retorna true caso tenha encontrado uma cópia identica do Flashcard
     // dentro do deck
     reset();
-    return this._deck.checkContains(card);
+    return this.deck.checkContains(card);
   }
 
   FlashcardList getCopy() {
     reset();
-    return this._deck;
+    return this.deck;
   }
+
+  factory Deck.fromJson(Map<String, dynamic> json) => _$DeckFromJson(json);
+
+  Map<String, dynamic> toJson() => _$DeckToJson(this);
 }

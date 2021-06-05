@@ -1,7 +1,13 @@
+import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
+
 import 'Flashcard.dart';
 import "dart:core";
 import "dart:math";
 
+import 'package:json_annotation/json_annotation.dart';
+part 'FlashcardList.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class FlashcardList {
   /* 
   Classe que contém uma lista para armazenar Flashcards. Ao invés de usar 
@@ -19,25 +25,27 @@ class FlashcardList {
   -> Flashcard getRandomCard()
   */
 
-  List<Flashcard> _flashcardList;
+  List<Flashcard> flashcardList;
 
-  FlashcardList() {
-    this._flashcardList = new List<Flashcard>();
+  FlashcardList({this.flashcardList}) {
+    if (this.flashcardList == null) {
+      this.flashcardList = new List<Flashcard>();
+    }
   }
 
   void add(Flashcard card) {
     // Adiciona um Flashcard na lista
-    this._flashcardList.add(card);
+    this.flashcardList.add(card);
   }
 
   void remove(Flashcard card) {
     // Remove todas as instancias de um Flashcard da lista
     int i = 0;
     bool contains = false;
-    while (i < this._flashcardList.length && contains == false) {
-      if (card.getFace() == this._flashcardList[i].getFace() &&
-          card.getBack() == this._flashcardList[i].getBack()) {
-        this._flashcardList.removeAt(i);
+    while (i < this.flashcardList.length && contains == false) {
+      if (card.getFace() == this.flashcardList[i].getFace() &&
+          card.getBack() == this.flashcardList[i].getBack()) {
+        this.flashcardList.removeAt(i);
         contains = true;
       } else {
         i++;
@@ -49,9 +57,9 @@ class FlashcardList {
     // Valida se já existe um Flashcard X na lista
     int i = 0;
     bool contains = false;
-    while (i < this._flashcardList.length && contains == false) {
-      if (card.getFace() == this._flashcardList[i].getFace() &&
-          card.getBack() == this._flashcardList[i].getBack()) {
+    while (i < this.flashcardList.length && contains == false) {
+      if (card.getFace() == this.flashcardList[i].getFace() &&
+          card.getBack() == this.flashcardList[i].getBack()) {
         contains = true;
       }
       i++;
@@ -61,18 +69,23 @@ class FlashcardList {
 
   int lenght() {
     // Retorna um int com o tamanho atual da lista
-    return this._flashcardList.length;
+    return this.flashcardList.length;
   }
 
   Flashcard getCard(int index) {
     // Retorna o Flashcard que está na posicao 'index' da List
-    return this._flashcardList[index];
+    return this.flashcardList[index];
   }
 
   Flashcard getRandomCard() {
     // Retorna um Flashcard aleatório da List
     Random random = Random();
-    int randomNumber = random.nextInt(this._flashcardList.length);
-    return this._flashcardList[randomNumber];
+    int randomNumber = random.nextInt(this.flashcardList.length);
+    return this.flashcardList[randomNumber];
   }
+
+  factory FlashcardList.fromJson(Map<String, dynamic> json) =>
+      _$FlashcardListFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FlashcardListToJson(this);
 }
