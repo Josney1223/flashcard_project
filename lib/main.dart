@@ -6,8 +6,17 @@ import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
 import 'package:flashcard_project/FrontEnd/Menu.dart';
 import 'package:flashcard_project/FrontEnd/Sobre.dart';
+import 'package:provider/provider.dart';
+import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Collection(),
+      child: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override

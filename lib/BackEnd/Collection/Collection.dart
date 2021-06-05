@@ -33,6 +33,7 @@ class Collection extends ChangeNotifier {
     if (this.decks == null) {
       this.decks = [];
     }
+    loadFile();
   }
 
   void createDeck(String deckName) {
@@ -144,6 +145,7 @@ class Collection extends ChangeNotifier {
         collectionList.add(Deck.fromJson(item));
       }
       this.decks = collectionList;
+      notifyListeners();
     }
   }
 
