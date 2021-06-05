@@ -19,7 +19,6 @@ class SaveLoad {
   Future<String> loadFile() {
     // Carrega uma coleção de decks que está no computador
     String jsonContent;
-    print('Imprimir primeiro');
 
     return readFile();
   }
@@ -49,13 +48,11 @@ class SaveLoad {
 
   Future<String> readFile() async {
     try {
-      print('Imprimir segundo');
-
       final file = await _localFile;
 
       // Le o arquivo
       final contents = await file.readAsString();
-      print(contents);
+
       return contents;
     } catch (e) {
       // Se encontrou um erro, retorna string vazia

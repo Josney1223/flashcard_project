@@ -158,7 +158,7 @@ void main() {
       }
     });
 
-    test('Collection: Validar o métodos que salvam e carregam', () {
+    test('Collection: Validar o métodos que salvam e carregam', () async {
       Collection colecao = new Collection();
       int inserir = Collection.INSERIR;
       Flashcard card1 = new Flashcard('Cachorro', 'Canis lupus familiaris'),
@@ -184,29 +184,22 @@ void main() {
       // Salvar
       colecao.saveFile();
 
-      // // Criar um deck novo que irá carregar as informações
-      // Collection colecaoCarregada = new Collection();
-
-      // // Carrega
-      // colecaoCarregada.loadFile();
-
-      // // Compara os dois decks para ver se são iguais
-      // expect(colecaoCarregada.decks.length, colecao.decks.length);
-      // for (int i = 0; i < colecaoCarregada.decks.length; i++) {
-      //   expect(colecaoCarregada.decks[i].getName(), colecao.decks[i].getName());
-      //   expect(colecaoCarregada.decks[i].getQtd(), colecao.decks[i].getQtd());
-      //   for (int k = 0; k < cards.length; k++) {
-      //     expect(colecaoCarregada.decks[i].deck.checkContains(cards[k]),
-      //         colecao.decks[i].deck.checkContains(cards[k]));
-      //   }
-      // }
-    });
-
-    test('NOME TOTALMENTE NOVO QUE NAO FOI REPETIDO ANTES', () {
+      // Criar um deck novo que irá carregar as informações
       Collection colecaoCarregada = new Collection();
 
       // Carrega
-      colecaoCarregada.loadFile();
+      await colecaoCarregada.loadFile();
+
+      // Compara os dois decks para ver se são iguais
+      expect(colecaoCarregada.decks.length, colecao.decks.length);
+      for (int i = 0; i < colecaoCarregada.decks.length; i++) {
+        expect(colecaoCarregada.decks[i].getName(), colecao.decks[i].getName());
+        expect(colecaoCarregada.decks[i].getQtd(), colecao.decks[i].getQtd());
+        for (int k = 0; k < cards.length; k++) {
+          expect(colecaoCarregada.decks[i].deck.checkContains(cards[k]),
+              colecao.decks[i].deck.checkContains(cards[k]));
+        }
+      }
     });
   });
 }

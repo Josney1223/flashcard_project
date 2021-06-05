@@ -131,15 +131,19 @@ class Collection extends ChangeNotifier {
     SaveLoad().saveFile(jsonEncode(this.decks));
   }
 
-  void loadFile() {
-    // Chama a função loadFIle da classe SaveLoad
-    String jsonLoaded;
-    SaveLoad().loadFile().then((value) => jsonLoaded);
-    if (jsonLoaded == null) {
-      print('Imprimir ultimo');
+  Future<void> loadFile() async {
+    // Chama a função loadFile da classe SaveLoad
+    String jsonLoaded = await SaveLoad().loadFile();
+    if (jsonLoaded == '') {
+      notify('Arquivo não encontrado');
     } else {
-      Map<String, dynamic> jsonCollection = jsonDecode(jsonLoaded);
-      this.decks = Collection.fromJson(jsonCollection).decks;
+      List<dynamic> dynamicList = jsonDecode(jsonLoaded);
+      List<Deck> collectionList = [];
+
+      for (var item in dynamicList) {
+        collectionList.add(Deck.fromJson(item));
+      }
+      this.decks = collectionList;
     }
   }
 
