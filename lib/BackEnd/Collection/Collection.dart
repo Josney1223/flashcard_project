@@ -27,6 +27,7 @@ class Collection extends ChangeNotifier {
   */
 
   List<Deck> decks;
+  static const REMOVER = 0, INSERIR = 1, MODIFICAR = 2;
 
   Collection({this.decks}) {
     if (this.decks == null) {
@@ -66,19 +67,19 @@ class Collection extends ChangeNotifier {
     if (index >= 0) {
       switch (operacao) {
         // Remover flashcard
-        case 0:
+        case REMOVER:
           if (this.decks[index].checkContains(card)) {
             this.decks[index].removeCard(card);
           }
           break;
 
-        // Adicionar flashcard
-        case 1:
+        // Inserir flashcard
+        case INSERIR:
           this.decks[index].insertCard(card);
           break;
 
         // Modificar flashcard
-        case 2:
+        case MODIFICAR:
           if (this.decks[index].checkContains(card)) {
             if (replaceCard != null) {
               this.decks[index].removeCard(card);
@@ -130,8 +131,16 @@ class Collection extends ChangeNotifier {
     SaveLoad().saveFile(jsonEncode(this.decks));
   }
 
-  List<Deck> loadFile() {
+  void loadFile() {
     // Chama a função loadFIle da classe SaveLoad
+    String jsonLoaded;
+    SaveLoad().loadFile().then((value) => jsonLoaded);
+    if (jsonLoaded == null) {
+      print('Imprimir ultimo');
+    } else {
+      Map<String, dynamic> jsonCollection = jsonDecode(jsonLoaded);
+      this.decks = Collection.fromJson(jsonCollection).decks;
+    }
   }
 
   int findDeck(String deckName) {
@@ -144,7 +153,7 @@ class Collection extends ChangeNotifier {
 
     if (tam > 0) {
       // Varre a lista procurando alguém com o mesmo nome
-      while (index < tam && !found) {
+      while (index < tam - 1 && !found) {
         index++;
         if (this.decks[index].getName() == deckName) found = true;
       }

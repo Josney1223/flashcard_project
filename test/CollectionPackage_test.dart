@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
@@ -6,6 +9,23 @@ import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
 import 'dart:convert';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(() async {
+    // Create a temporary directory.
+    final directory = await Directory.systemTemp.createTemp();
+
+    // Mock out the MethodChannel for the path_provider plugin.
+    const MethodChannel('plugins.flutter.io/path_provider')
+        .setMockMethodCallHandler((MethodCall methodCall) async {
+      // If you're getting the apps documents directory, return the path to the
+      // temp directory on the test environment instead.
+      if (methodCall.method == 'getApplicationDocumentsDirectory') {
+        return directory.path;
+      }
+      return null;
+    });
+  });
+
   group('Collection', () {
     test('Collection: Validar o método createDeck', () {
       Collection colecao = new Collection();
@@ -40,7 +60,9 @@ void main() {
       Collection colecao = new Collection();
       String deckName = 'Nome do Deck';
       Deck result;
-      int remover = 0, adicionar = 1, modificar = 2;
+      int remover = Collection.REMOVER,
+          adicionar = Collection.INSERIR,
+          modificar = Collection.MODIFICAR;
       Flashcard card = new Flashcard('Gato', 'Felis catus'),
           newCard = new Flashcard('Lobo', 'Canis lupus');
       Collection resultObject;
@@ -79,7 +101,7 @@ void main() {
     test('Collection: Validar as conversoes de Json', () {
       Collection colecao = new Collection();
       String deckName = 'Nome do Deck';
-      int adicionar = 1;
+      int adicionar = Collection.INSERIR;
       Flashcard card = new Flashcard('Gato', 'Felis catus');
       Collection resultObject;
 
@@ -136,19 +158,55 @@ void main() {
       }
     });
 
-    test('Collection: Validar o método saveFile', () {
+    test('Collection: Validar o métodos que salvam e carregam', () {
       Collection colecao = new Collection();
-      String deckName = 'Novo Deck';
-      int adicionar = 1;
-      Flashcard card = new Flashcard('Gato', 'Felis catus');
+      int inserir = Collection.INSERIR;
+      Flashcard card1 = new Flashcard('Cachorro', 'Canis lupus familiaris'),
+          card2 = new Flashcard('Pega-rabuda', 'Pica Pica'),
+          card3 = new Flashcard('Gato', 'Felis silvestris catus'),
+          card4 = new Flashcard('火', 'Fogo'),
+          card5 = new Flashcard('水', 'Água'),
+          card6 = new Flashcard('月 ', 'Lua');
+      var cards = [card1, card2, card3, card4, card5, card6];
 
-      colecao.createDeck(deckName);
+      colecao.createDeck('Taxonomia');
+      colecao.createDeck('Kanji');
 
       // Adicionar uma carta ao deck
-      colecao.editDeck(deckName, adicionar, card);
+      colecao.editDeck('Taxonomia', inserir, card1);
+      colecao.editDeck('Taxonomia', inserir, card2);
+      colecao.editDeck('Taxonomia', inserir, card3);
+
+      colecao.editDeck('Kanji', inserir, card4);
+      colecao.editDeck('Kanji', inserir, card5);
+      colecao.editDeck('Kanji', inserir, card6);
 
       // Salvar
       colecao.saveFile();
+
+      // // Criar um deck novo que irá carregar as informações
+      // Collection colecaoCarregada = new Collection();
+
+      // // Carrega
+      // colecaoCarregada.loadFile();
+
+      // // Compara os dois decks para ver se são iguais
+      // expect(colecaoCarregada.decks.length, colecao.decks.length);
+      // for (int i = 0; i < colecaoCarregada.decks.length; i++) {
+      //   expect(colecaoCarregada.decks[i].getName(), colecao.decks[i].getName());
+      //   expect(colecaoCarregada.decks[i].getQtd(), colecao.decks[i].getQtd());
+      //   for (int k = 0; k < cards.length; k++) {
+      //     expect(colecaoCarregada.decks[i].deck.checkContains(cards[k]),
+      //         colecao.decks[i].deck.checkContains(cards[k]));
+      //   }
+      // }
+    });
+
+    test('NOME TOTALMENTE NOVO QUE NAO FOI REPETIDO ANTES', () {
+      Collection colecaoCarregada = new Collection();
+
+      // Carrega
+      colecaoCarregada.loadFile();
     });
   });
 }

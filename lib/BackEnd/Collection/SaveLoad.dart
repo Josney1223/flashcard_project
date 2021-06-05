@@ -1,9 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-
-import '../Flashcard/Deck.dart';
 
 class SaveLoad {
   /*
@@ -16,16 +13,15 @@ class SaveLoad {
 
   void saveFile(String jsonDecks) {
     // Salva a coleção de decks no computador
-    writeOnFile(jsonDecks);
+    writeOnFile(jsonDecks).then((value) => null);
   }
 
-  String loadFile() {
+  Future<String> loadFile() {
     // Carrega uma coleção de decks que está no computador
     String jsonContent;
-    readFile().then((value) {
-      jsonContent = value;
-    });
-    return jsonContent;
+    print('Imprimir primeiro');
+
+    return readFile();
   }
 
   Future<String> get _localPath async {
@@ -37,29 +33,32 @@ class SaveLoad {
   Future<File> get _localFile async {
     // O arquivo que será salvo
     final path = await _localPath;
-    final kado = 'KadoApp';
-    final collection = 'collection.json';
+    final collection = 'KadoCollection.json';
+    final completePath = p.join(path, collection);
 
-    return File(p.join(path, kado, collection));
+    File newFile = new File(completePath);
+    return newFile;
   }
 
-  void writeOnFile(String content) async {
+  Future<File> writeOnFile(String content) async {
     final file = await _localFile;
 
     // Escreve no arquivo
-    file.writeAsString(content);
+    return file.writeAsString(content);
   }
 
   Future<String> readFile() async {
     try {
+      print('Imprimir segundo');
+
       final file = await _localFile;
 
-      // Read the file
+      // Le o arquivo
       final contents = await file.readAsString();
-
+      print(contents);
       return contents;
     } catch (e) {
-      // If encountering an error, return 0
+      // Se encontrou um erro, retorna string vazia
       return '';
     }
   }
