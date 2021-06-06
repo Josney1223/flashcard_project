@@ -19,13 +19,11 @@ class DeckCollectionView extends StatelessWidget {
                         top: 50, bottom: 15, left: 10, right: 10),
                     child: Column(
                       children: <Widget>[
-                        Consumer<Collection>(
-                          builder: (context, collection, child) => Text(
-                            "${collection.decks.length}",
-                            style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        Text(
+                          "Coleção de Decks",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                         Consumer<Collection>(
