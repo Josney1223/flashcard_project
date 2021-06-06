@@ -181,6 +181,15 @@ class Collection extends ChangeNotifier {
     return null;
   }
 
+  void setDeckName(String deckName, String newDeckName){
+
+    int index = findDeck(deckName);
+
+    if (index >= 0) {
+      this.decks[index].setName(newDeckName);
+    }
+  }
+
   // Funções de Json
   factory Collection.fromJson(Map<String, dynamic> json) =>
       _$CollectionFromJson(json);
