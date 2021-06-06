@@ -14,6 +14,7 @@ class Deck {
 
     Métodos:
     -> void reset()
+    -> void setName()
     -> String getName()
     -> int getQtd()
     -> Flashcard pullCard()    
@@ -67,6 +68,11 @@ class Deck {
   String getName() {
     // Retorna o nome do baralho
     return this.deckName;
+  }
+
+  void setName(String newName) {
+    // Retorna o nome do baralho
+    this.deckName = newName;
   }
 
   int getQtd() {
