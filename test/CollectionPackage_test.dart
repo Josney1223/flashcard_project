@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:english_words/english_words.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
-import 'dart:convert';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
