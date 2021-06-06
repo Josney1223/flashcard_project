@@ -69,6 +69,11 @@ class Deck {
     return this.deckName;
   }
 
+  void setName(String newName) {
+    // muda o nome do baralho
+    this.deckName = newName;
+  }
+
   int getQtd() {
     // Retorna o tamanho do baralho
     return this.qtdFlashcards;
