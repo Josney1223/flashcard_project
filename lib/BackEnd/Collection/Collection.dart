@@ -33,6 +33,7 @@ class Collection extends ChangeNotifier {
     if (this.decks == null) {
       this.decks = [];
     }
+    loadFile();
   }
 
   void createDeck(String deckName) {
@@ -187,13 +188,13 @@ class Collection extends ChangeNotifier {
     return null;
   }
 
-  void setDeckName(String deckName, String newDeckName){
-
+  void setDeckName(String deckName, String newDeckName) {
     int index = findDeck(deckName);
 
     if (index >= 0) {
       this.decks[index].setName(newDeckName);
     }
+    notifyListeners();
   }
 
   // Funções de Json
