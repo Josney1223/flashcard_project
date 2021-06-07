@@ -7,6 +7,9 @@ part of 'Deck.dart';
 // **************************************************************************
 
 Deck _$DeckFromJson(Map<String, dynamic> json) {
+  $checkKeys(json,
+      requiredKeys: const ['deck', 'grave', 'qtdFlashcards', 'deckName'],
+      disallowNullValues: const ['deck', 'grave', 'qtdFlashcards', 'deckName']);
   return Deck(
     json['deckName'] as String,
     deck: json['deck'] == null
@@ -19,9 +22,18 @@ Deck _$DeckFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$DeckToJson(Deck instance) => <String, dynamic>{
-      'deck': instance.deck?.toJson(),
-      'grave': instance.grave?.toJson(),
-      'qtdFlashcards': instance.qtdFlashcards,
-      'deckName': instance.deckName,
-    };
+Map<String, dynamic> _$DeckToJson(Deck instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('deck', instance.deck?.toJson());
+  writeNotNull('grave', instance.grave?.toJson());
+  writeNotNull('qtdFlashcards', instance.qtdFlashcards);
+  writeNotNull('deckName', instance.deckName);
+  return val;
+}

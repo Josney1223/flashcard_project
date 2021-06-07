@@ -133,18 +133,24 @@ class Collection extends ChangeNotifier {
 
   Future<void> loadFile() async {
     // Chama a função loadFile da classe SaveLoad
+
     String jsonLoaded = await SaveLoad().loadFile();
     if (jsonLoaded == '') {
       notify('Arquivo não encontrado');
     } else {
-      List<dynamic> dynamicList = jsonDecode(jsonLoaded);
-      List<Deck> collectionList = [];
+      try {
+        List<dynamic> dynamicList = jsonDecode(jsonLoaded);
+        List<Deck> collectionList = [];
 
-      for (var item in dynamicList) {
-        collectionList.add(Deck.fromJson(item));
+        for (var item in dynamicList) {
+          collectionList.add(Deck.fromJson(item));
+        }
+        this.decks = collectionList;
+      } catch (e) {
+        notify('Arquivo corrompido');
       }
-      this.decks = collectionList;
     }
+    notifyListeners();
   }
 
   int findDeck(String deckName) {
