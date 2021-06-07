@@ -1,4 +1,7 @@
 import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
@@ -8,7 +11,7 @@ class SaveLoad {
 
     Métodos:
     -> void saveFile(String)
-    -> String loadFile()
+    -> Future<String> loadFile()
   */
 
   void saveFile(String jsonDecks) {
@@ -16,11 +19,27 @@ class SaveLoad {
     writeOnFile(jsonDecks).then((value) => null);
   }
 
-  Future<String> loadFile() {
+  Future<String> loadFile() async {
     // Carrega uma coleção de decks que está no computador
-    String jsonContent;
-
-    return readFile();
+    File file;
+    if (kIsWeb) {
+      // se está rodando na web
+      FilePickerResult result = await FilePicker.platform
+          .pickFiles(type: FileType.custom, allowedExtensions: ['json']);
+      if (result != null) {
+        try {
+          String jsonString =
+              new String.fromCharCodes(result.files.first.bytes);
+          return jsonString;
+        } catch (e) {
+          // Se não foi enviado nada ou der um erro de conversão
+          return '';
+        }
+      }
+    } else {
+      file = await _localFile;
+    }
+    return readFileFromPath(file);
   }
 
   Future<String> get _localPath async {
@@ -46,10 +65,8 @@ class SaveLoad {
     return file.writeAsString(content);
   }
 
-  Future<String> readFile() async {
+  Future<String> readFileFromPath(File file) async {
     try {
-      final file = await _localFile;
-
       // Le o arquivo
       final contents = await file.readAsString();
 
