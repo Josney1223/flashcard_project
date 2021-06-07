@@ -23,9 +23,13 @@ class Deck {
     -> bool checkContains(Flashcard card)
   */
 
+  @JsonKey(required: true, disallowNullValue: true)
   FlashcardList deck;
+  @JsonKey(required: true, disallowNullValue: true)
   FlashcardList grave;
+  @JsonKey(required: true, disallowNullValue: true)
   int qtdFlashcards;
+  @JsonKey(required: true, disallowNullValue: true)
   String deckName;
 
   Deck(this.deckName, {this.deck, this.grave, this.qtdFlashcards}) {
