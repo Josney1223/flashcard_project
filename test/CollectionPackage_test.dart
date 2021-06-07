@@ -199,5 +199,18 @@ void main() {
         }
       }
     });
+
+    test('Collection: Validar o métodos que importam e exportam', () {
+      Collection colecao = new Collection();
+      String deckName = 'Nome do Deck';
+
+      Deck result = colecao.getDeck(deckName);
+      expect(result, null);
+
+      colecao.createDeck(deckName);
+      result = colecao.getDeck(deckName);
+      expect(result.getName(), deckName);
+      expect(result.getQtd(), 0);
+    });
   });
 }
