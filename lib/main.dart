@@ -8,8 +8,17 @@ import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
 import 'package:flashcard_project/FrontEnd/Menu.dart';
 import 'package:flashcard_project/FrontEnd/Sobre.dart';
 import 'package:flashcard_project/FrontEnd/PersistDeck.dart';
+import 'package:provider/provider.dart';
+import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Collection(),
+      child: MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -22,7 +31,8 @@ class MyApp extends StatelessWidget {
         '/deckSelection': (context) => DeckSelectionView(),
         '/sobre': (context) => Sobre(),
         '/deckCollection': (context) => DeckCollectionView(),
-        FlashcardCollectionView.routeName: (context) => FlashcardCollectionView(),
+        FlashcardCollectionView.routeName: (context) =>
+            FlashcardCollectionView(),
         PersistDeck.routeName: (context) => PersistDeck(),
       },
     );

@@ -73,6 +73,7 @@ class SaveLoad {
       return contents;
     } catch (e) {
       // Se encontrou um erro, retorna string vazia
+
       return '';
     }
   }
