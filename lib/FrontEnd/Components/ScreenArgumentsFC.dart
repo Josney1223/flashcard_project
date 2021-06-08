@@ -3,5 +3,6 @@ import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
 
 class ScreenArgumentsFC {
   final Flashcard flashcard;
-  ScreenArgumentsFC(this.flashcard);
+  final Deck deck;
+  ScreenArgumentsFC(this.deck, this.flashcard);
 }

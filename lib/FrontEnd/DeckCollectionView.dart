@@ -89,7 +89,7 @@ class DeckCollectionView extends StatelessWidget {
   }
 }
 
-enum selectedDeckActions { VISUALIZAR, EDITAR, DELETAR, EXPORTAR }
+enum selectedDeckActions { EDITAR, DELETAR, EXPORTAR }
 
 class DeckListigView extends StatelessWidget {
   List<Deck> deckList;
@@ -105,12 +105,6 @@ class DeckListigView extends StatelessWidget {
           return SimpleDialog(
             title: const Text('Selecione uma opção:'),
             children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, selectedDeckActions.VISUALIZAR);
-                },
-                child: const Text('Visualizar'),
-              ),
               SimpleDialogOption(
                 onPressed: () {
                   Navigator.pop(context, selectedDeckActions.EDITAR);
@@ -132,17 +126,10 @@ class DeckListigView extends StatelessWidget {
             ],
           );
         })) {
-      case selectedDeckActions.VISUALIZAR:
-        Navigator.pushNamed(
-          context,
-          FlashcardCollectionView.routeName,
-          arguments: ScreenArguments(deck),
-        );
-        break;
       case selectedDeckActions.EDITAR:
         Navigator.pushNamed(
           context,
-          PersistDeck.routeName,
+          FlashcardCollectionView.routeName,
           arguments: ScreenArguments(deck),
         );
         break;

@@ -1,5 +1,6 @@
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
+import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArgumentsFC.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
@@ -17,34 +18,41 @@ class EditFlashcard extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context).settings.arguments as ScreenArgumentsFC;
     final Flashcard flashcardReceived = args.flashcard;
+    final deck = args.deck;
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: MyCustomForm(flashcardReceived),
+      body: MyCustomForm(deck, flashcardReceived),
     );
   }
 }
 
 class MyCustomForm extends StatefulWidget {
+  Deck deck;
   Flashcard flashcardReceived;
 
-  MyCustomForm(Flashcard flashcardReceived) {
+  MyCustomForm(Deck deck, Flashcard flashcardReceived) {
+    this.deck = deck;
     this.flashcardReceived = flashcardReceived;
   }
 
   @override
-  EditFlashcardBody createState() => EditFlashcardBody(this.flashcardReceived);
+  EditFlashcardBody createState() =>
+      EditFlashcardBody(this.deck, this.flashcardReceived);
 }
 
 class EditFlashcardBody extends State<MyCustomForm> {
   var myControllerFrente = TextEditingController();
   var myControllerVerso = TextEditingController();
 
-  String oldNameFrente; 
+  String oldNameFrente;
   String oldNameVerso;
   Flashcard flashcardReceived;
+  Deck deck;
 
-  EditFlashcardBody(Flashcard flashcardReceived) {
+  EditFlashcardBody(Deck deck, Flashcard flashcardReceived) {
     this.flashcardReceived = flashcardReceived;
+    this.deck = deck;
 
     if (flashcardReceived != null) {
       myControllerFrente.text = this.flashcardReceived.getFace();
@@ -58,7 +66,8 @@ class EditFlashcardBody extends State<MyCustomForm> {
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed.
-    myControllerFrente.dispose(); myControllerVerso.dispose();
+    myControllerFrente.dispose();
+    myControllerVerso.dispose();
     super.dispose();
   }
 
@@ -99,7 +108,7 @@ class EditFlashcardBody extends State<MyCustomForm> {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                //createFlashcard(this.flashcardReceived);
+                createFlashcard();
                 Navigator.of(context).pop();
               },
               child: Text("Salvar"),
@@ -122,11 +131,19 @@ class EditFlashcardBody extends State<MyCustomForm> {
   }
 
   // Cria ou altera o nome de um deck
-  void createDeck(Flashcard flashcardReceived) {
+  void createFlashcard() {
     if (flashcardReceived == null) {
-      //create flashcard
+      Provider.of<Collection>(context, listen: false).editDeck(
+          this.deck.getName(),
+          1,
+          new Flashcard(myControllerFrente.text, myControllerVerso.text));
     } else if (myControllerFrente.text != '' && myControllerVerso.text != '') {
-      //edit flashcard values
+      Provider.of<Collection>(context, listen: false)
+          .editDeck(this.deck.getName(), 0, this.flashcardReceived);
+      Provider.of<Collection>(context, listen: false).editDeck(
+          this.deck.getName(),
+          1,
+          new Flashcard(myControllerFrente.text, myControllerVerso.text));
     }
   }
 }
