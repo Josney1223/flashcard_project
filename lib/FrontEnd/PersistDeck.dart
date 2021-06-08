@@ -73,6 +73,7 @@ class PersistDeckBody extends State<MyCustomForm> {
               constraints: BoxConstraints(maxWidth: 500),
               child: TextField(
                 controller: myController,
+                maxLength: 25,
                 decoration: InputDecoration(
                   labelText: 'Nome do deck',
                 ),

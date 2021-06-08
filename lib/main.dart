@@ -2,6 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 import 'package:flashcard_project/FrontEnd/DeckCollectionView.dart';
+import 'package:flashcard_project/FrontEnd/EditFlashcard.dart';
 import 'package:flashcard_project/FrontEnd/FlashcardCollectionView.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         FlashcardCollectionView.routeName: (context) =>
             FlashcardCollectionView(),
         PersistDeck.routeName: (context) => PersistDeck(),
+        EditFlashcard.routeName: (context) => EditFlashcard(),
       },
     );
   }

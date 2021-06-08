@@ -1,5 +1,9 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
+import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/FlashcardList.dart';
+import 'package:flashcard_project/FrontEnd/Components/ScreenArgumentsFC.dart';
+import 'package:flashcard_project/FrontEnd/EditFlashcard.dart';
+import 'package:flashcard_project/FrontEnd/PersistDeck.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
@@ -28,6 +32,58 @@ class FlashcardCollectionView extends StatelessWidget {
                   ),
                 ),
                 FlashCardListingView(deck),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(245, 170, 180, 1),
+                        elevation: 8,
+                        shadowColor: Colors.grey,
+                        padding: EdgeInsets.all(20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(80.0)),
+                        textStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),
+                      child: Text("Criar Flashcard"),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          EditFlashcard.routeName,
+                          arguments: ScreenArgumentsFC(null),
+                        );
+                      },
+                    ),
+                    SizedBox(
+                      width: 50,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(245, 170, 180, 1),
+                        elevation: 8,
+                        shadowColor: Colors.grey,
+                        padding: EdgeInsets.all(20),
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(80.0)),
+                        textStyle: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        )),
+                      child: Text("Editar nome do deck"),
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          PersistDeck.routeName,
+                          arguments: ScreenArguments(deck),
+                        );
+                      },
+                    )
+                  ],
+                ),
                 SizedBox(height: 20),
                 GoBackButton(),
               ],
@@ -48,7 +104,7 @@ class FlashCardListingView extends StatelessWidget {
     this.flashcardList = deck.deck;
   }
 
-  Future _askUser(BuildContext context) async {
+  Future _askUser(BuildContext context, Flashcard flashcard) async {
     switch(
       await showDialog(
         context: context, 
@@ -70,6 +126,11 @@ class FlashCardListingView extends StatelessWidget {
       )
     ) {
       case selectedFlashcardActions.EDITAR:
+        Navigator.pushNamed(
+          context,
+          EditFlashcard.routeName,
+          arguments: ScreenArgumentsFC(flashcard),
+        );
         break;
       case selectedFlashcardActions.DELETAR:
         showDialog(
@@ -78,11 +139,16 @@ class FlashCardListingView extends StatelessWidget {
             title: Text('Tem certeza que deseja remover esse flashcard?'),
             actions: [
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  //remove flashcard
+                  Navigator.of(context).pop();
+                },
                 child: Text('Sim'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
                 child: Text('Não'),
               ),
             ],
@@ -104,7 +170,7 @@ class FlashCardListingView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             onTap: () => {
-              _askUser(context)
+              _askUser(context, this.flashcardList.getCard(index))
             },
             child: Card(
               color: Color.fromRGBO(252, 210, 217, 1),
