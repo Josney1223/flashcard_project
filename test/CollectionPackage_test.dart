@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
@@ -63,7 +64,6 @@ void main() {
           modificar = Collection.MODIFICAR;
       Flashcard card = new Flashcard('Gato', 'Felis catus'),
           newCard = new Flashcard('Lobo', 'Canis lupus');
-      Collection resultObject;
 
       colecao.createDeck(deckName);
       result = colecao.getDeck(deckName);
@@ -202,15 +202,41 @@ void main() {
 
     test('Collection: Validar o métodos que importam e exportam', () {
       Collection colecao = new Collection();
-      String deckName = 'Nome do Deck';
+      int inserir = Collection.INSERIR;
+      Flashcard card1 = new Flashcard('Cachorro', 'Canis lupus familiaris'),
+          card2 = new Flashcard('Pega-rabuda', 'Pica Pica'),
+          card3 = new Flashcard('Gato', 'Felis silvestris catus'),
+          card4 = new Flashcard('火', 'Fogo'),
+          card5 = new Flashcard('水', 'Água'),
+          card6 = new Flashcard('月 ', 'Lua');
+      String exportedDeck1 = 'Taxonomia';
 
-      Deck result = colecao.getDeck(deckName);
-      expect(result, null);
+      colecao.createDeck(exportedDeck1);
+      colecao.createDeck('Kanji');
 
-      colecao.createDeck(deckName);
-      result = colecao.getDeck(deckName);
-      expect(result.getName(), deckName);
-      expect(result.getQtd(), 0);
+      // Adicionar uma carta ao deck
+      colecao.editDeck(exportedDeck1, inserir, card1);
+      colecao.editDeck(exportedDeck1, inserir, card2);
+      colecao.editDeck(exportedDeck1, inserir, card3);
+
+      colecao.editDeck('Kanji', inserir, card4);
+      colecao.editDeck('Kanji', inserir, card5);
+      colecao.editDeck('Kanji', inserir, card6);
+
+      String exportString = colecao.exportDeck(exportedDeck1);
+
+      Map<String, dynamic> jsonExported =
+          jsonDecode(utf8.decode(base64.decode(exportString)));
+
+      Deck exportedDeck = Deck.fromJson(jsonExported);
+
+      expect(exportedDeck1, exportedDeck.deckName);
+      expect(true, exportedDeck.deck.checkContains(card1));
+      expect(true, exportedDeck.deck.checkContains(card2));
+      expect(true, exportedDeck.deck.checkContains(card3));
+      expect(false, exportedDeck.deck.checkContains(card4));
+      expect(false, exportedDeck.deck.checkContains(card5));
+      expect(false, exportedDeck.deck.checkContains(card6));
     });
   });
 }

@@ -128,7 +128,7 @@ class Collection extends ChangeNotifier {
     String encodedDeck;
 
     if (index >= 0) {
-      ImportExport().exportDeck(this.decks[index].toJson());
+      encodedDeck = ImportExport().exportDeck(this.decks[index].toJson());
     } else {
       // O deck com o deckName não foi encontrado
       notify('O deck não foi encontrado');

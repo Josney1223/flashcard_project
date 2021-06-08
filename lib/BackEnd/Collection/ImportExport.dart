@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import '../Flashcard/Deck.dart';
-
 class ImportExport {
   /*
     Classe que gerencia a importação e exportação de deck. 
