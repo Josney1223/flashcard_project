@@ -94,37 +94,46 @@ class Collection extends ChangeNotifier {
     notifyListeners();
   }
 
-  void importDeck(String path) {
+  void importDeck(String jsonDeck) {
     // Chama a função importDeck da classe ImportExport
-    ImportExport file = new ImportExport();
 
-    Deck deck = file.importDeck(path);
-    // Se o arquivo existir
+    Deck deck = Deck.fromJson(ImportExport().importDeck(jsonDeck));
+    String nomeDoDeck = deck.getName();
+
+    // Se existir um deck com os parametros
     if (deck != null) {
-      // e se não tiver um com mesmo nome, então bota o deck na coleção
-      if (findDeck(deck.getName()) < 0) {
-        this.decks.add(deck);
-        notifyListeners();
+      // e se tiver um com mesmo nome, então bota o deck na coleção
+      if (findDeck(nomeDoDeck) >= 0) {
+        int copies = 1;
+        bool exist = true;
+        while (exist) {
+          if (findDeck(nomeDoDeck + '$copies') < 0) {
+            exist = false;
+          } else {
+            copies++;
+          }
+        }
       }
+      this.decks.add(deck);
     } else {
       // O deck no caminho especificado
       notify('nao sei o padrao ainda');
     }
+    notifyListeners();
   }
 
-  void exportDeck(String deckName, String path) {
+  String exportDeck(String deckName) {
     // Chama a função exportDeck da classe ImportExport
-    ImportExport file = new ImportExport();
     int index = findDeck(deckName);
+    String encodedDeck;
 
     if (index >= 0) {
-      if (!file.exportDeck(jsonEncode(this.decks))) {
-        // export deu errado
-      }
+      encodedDeck = ImportExport().exportDeck(this.decks[index].toJson());
     } else {
       // O deck com o deckName não foi encontrado
-      notify('nao sei que mensagem mandar');
+      notify('O deck não foi encontrado');
     }
+    return encodedDeck;
   }
 
   void saveFile() {

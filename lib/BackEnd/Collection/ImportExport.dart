@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import '../Flashcard/Deck.dart';
-import '../Flashcard/Flashcard.dart';
-import '../Flashcard/FlashcardList.dart';
-
 class ImportExport {
   /*
     Classe que gerencia a importação e exportação de deck. 
@@ -13,18 +9,17 @@ class ImportExport {
     -> bool exportDeck(Deck deck)
   */
 
-  Deck importDeck(String path) {
-    // Importa um deck que está localizado no computador
-    Deck a = new Deck('a');
-    return a;
+  Map<String, dynamic> importDeck(String base64Deck) {
+    // Importa um deck apartir de um arquivo json em base64.
+    String stringDeck = utf8.decode(base64.decode(base64Deck));
+
+    return jsonDecode(stringDeck);
   }
 
-  bool exportDeck(String jsonSent) {
-    // Exporta um deck para algum local no computador
-    Map<String, dynamic> json = jsonDecode(jsonSent);
+  String exportDeck(Map<String, dynamic> chosenDeck) {
+    // Cria uma String em base64 com base no Json do Deck para exportá-lo.
+    String jsonDeck = jsonEncode(chosenDeck);
 
-    for (int i = 0; i < 0; i++) {}
-
-    return true;
+    return base64Encode(utf8.encode(jsonDeck));
   }
 }
