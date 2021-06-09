@@ -1,55 +1,53 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
+import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
+import 'InGame.dart';
 
 /*
 * Tela de seleção de deck (Selecione um Deck) com listagem dos decks
 */
 class DeckSelectionView extends StatelessWidget {
+  static const routeName = '/DeckSelectionView';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Center(
-            child: Padding(
-                padding: EdgeInsets.all(30),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "SELECIONE UM DECK",
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 25),
-                    //TODO listagem de decks
-                    DeckNameView(),
-                    GoBackButton(),
-                  ],
-                ))));
+        body: SingleChildScrollView(
+            child: Center(
+                child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 50, bottom: 15, left: 10, right: 10),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          "SELEÇÃO DE DECKS",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Consumer<Collection>(
+                          builder: (context, collection, child) {
+                            return DeckListView(collection.decks);
+                          },
+                        ),
+                        Row(),
+                        SizedBox(height: 20),
+                        GoBackButton(),
+                      ],
+                    )))));
   }
 }
 
-class DeckNameView extends StatelessWidget {
+class DeckListView extends StatelessWidget {
   List<Deck> deckList;
 
-  DeckNameView() {
-    Deck deck1 = new Deck('"nome do deck"');
-    Deck deck2 = new Deck('"nome do deck"');
-    deckList = [];
-    deckList.add(deck1);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
-    deckList.add(deck2);
+  DeckListView(List<Deck> dl) {
+    deckList = dl;
   }
 
   @override
@@ -63,12 +61,18 @@ class DeckNameView extends StatelessWidget {
         padding: EdgeInsets.only(top: 50),
         itemCount: deckList.length,
         itemBuilder: (BuildContext context, int index) {
-          return Card(
-            color: Color.fromRGBO(252, 210, 217, 1),
-            child: Center(
-              child: Text(
-                this.deckList[index].getName(),
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          return InkWell(
+            onTap: () => {
+              Navigator.pushNamed(context, InGame.routeName,
+                  arguments: ScreenArguments(this.deckList[index]))
+            },
+            child: Card(
+              color: Color.fromRGBO(252, 210, 217, 1),
+              child: Center(
+                child: Text(
+                  this.deckList[index].getName(),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           );
