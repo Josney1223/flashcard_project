@@ -1,4 +1,5 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
+import 'package:flashcard_project/BackEnd/GameplayLoop.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
 import 'package:flutter/material.dart';
@@ -62,9 +63,14 @@ class DeckListView extends StatelessWidget {
         itemCount: deckList.length,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
-            onTap: () => {
-              Navigator.pushNamed(context, InGame.routeName,
-                  arguments: ScreenArguments(this.deckList[index]))
+            onTap: () {
+              Provider.of<GameplayLoop>(context, listen: false)
+                  .setDeck(this.deckList[index]);
+              if (this.deckList[index].getQtd() < 1) {
+                // Fazer alguma coisa se nn tiver cartas no deck
+              } else {
+                Navigator.pushNamed(context, InGame.routeName);
+              }
             },
             child: Card(
               color: Color.fromRGBO(252, 210, 217, 1),

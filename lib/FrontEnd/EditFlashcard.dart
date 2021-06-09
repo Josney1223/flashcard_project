@@ -1,6 +1,5 @@
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
-import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArgumentsFC.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';

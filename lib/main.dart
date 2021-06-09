@@ -1,6 +1,7 @@
 // Copyright 2018 The Flutter team. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
+import 'package:flashcard_project/BackEnd/GameplayLoop.dart';
 import 'package:flashcard_project/FrontEnd/DeckCollectionView.dart';
 import 'package:flashcard_project/FrontEnd/EditFlashcard.dart';
 import 'package:flashcard_project/FrontEnd/FlashcardCollectionView.dart';
@@ -16,8 +17,13 @@ import 'FrontEnd/EndGame.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => Collection(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Collection(),
+        ),
+        ChangeNotifierProvider(create: (context) => GameplayLoop())
+      ],
       child: MyApp(),
     ),
   );
@@ -35,7 +41,7 @@ class MyApp extends StatelessWidget {
         '/sobre': (context) => Sobre(),
         '/deckCollection': (context) => DeckCollectionView(),
         '/menu': (context) => Menu(),
-        '/endgame': (context) => EndGame(),
+        EndGame.routeName: (context) => EndGame(),
         FlashcardCollectionView.routeName: (context) =>
             FlashcardCollectionView(),
         PersistDeck.routeName: (context) => PersistDeck(),

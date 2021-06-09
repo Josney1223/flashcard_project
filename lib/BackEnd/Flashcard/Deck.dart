@@ -86,7 +86,7 @@ class Deck {
   Flashcard pullCard() {
     // Remove um Flashcard do this._deck, insere ele no this._grave e o retorna
     if (this.deck.lenght() == 0) {
-      reset();
+      return null;
     }
     Flashcard card = this.deck.getRandomCard();
     this.deck.remove(card);

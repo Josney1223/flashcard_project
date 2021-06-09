@@ -1,10 +1,14 @@
+import 'package:flashcard_project/BackEnd/GameplayLoop.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'Menu.dart';
 
 /*
 Tela de fim de jogo
 */
 class EndGame extends StatelessWidget {
+  static const routeName = '/endgame';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,12 +33,14 @@ class EndGame extends StatelessWidget {
               ),
               SizedBox(height: 35),
               Text(
-                'ACERTOS: ',
+                'ACERTOS: ' +
+                    Provider.of<GameplayLoop>(context).getHit().toString(),
                 style: TextStyle(fontSize: 25),
               ),
               SizedBox(height: 5),
               Text(
-                'ERROS: ',
+                'ERROS: ' +
+                    Provider.of<GameplayLoop>(context).getMiss().toString(),
                 style: TextStyle(fontSize: 25),
               ),
               SizedBox(height: 250),
