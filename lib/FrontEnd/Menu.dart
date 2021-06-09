@@ -5,6 +5,7 @@ import 'Components/MenuButtonWithIcon.dart';
 * Tela Menu principal
 */
 class Menu extends StatelessWidget {
+  static const routeName = '/menu';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
