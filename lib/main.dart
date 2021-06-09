@@ -4,6 +4,7 @@
 import 'package:flashcard_project/FrontEnd/DeckCollectionView.dart';
 import 'package:flashcard_project/FrontEnd/EditFlashcard.dart';
 import 'package:flashcard_project/FrontEnd/FlashcardCollectionView.dart';
+import 'package:flashcard_project/FrontEnd/InGame.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
 import 'package:flashcard_project/FrontEnd/Menu.dart';
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
             FlashcardCollectionView(),
         PersistDeck.routeName: (context) => PersistDeck(),
         EditFlashcard.routeName: (context) => EditFlashcard(),
+        DeckSelectionView.routeName: (context) => DeckSelectionView(),
+        InGame.routeName: (context) => InGame(),
       },
     );
   }
