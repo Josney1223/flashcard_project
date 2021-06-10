@@ -1,7 +1,6 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
 import 'package:flashcard_project/BackEnd/GameplayLoop.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
-import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';

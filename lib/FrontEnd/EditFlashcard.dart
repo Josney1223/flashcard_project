@@ -131,7 +131,14 @@ class EditFlashcardBody extends State<MyCustomForm> {
 
   // Cria ou altera o nome de um deck
   void createFlashcard() {
-    if (flashcardReceived == null) {
+    myControllerFrente.text = myControllerFrente.text.trimLeft();
+    myControllerFrente.text = myControllerFrente.text.trimRight();
+    myControllerVerso.text = myControllerVerso.text.trimLeft();
+    myControllerVerso.text = myControllerVerso.text.trimRight();
+
+    if (flashcardReceived == null &&
+        myControllerFrente.text != '' &&
+        myControllerVerso.text != '') {
       Provider.of<Collection>(context, listen: false).editDeck(
           this.deck.getName(),
           1,

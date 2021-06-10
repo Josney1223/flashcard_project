@@ -1,5 +1,4 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
-import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:flashcard_project/FrontEnd/FlashcardCollectionView.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
