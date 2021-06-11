@@ -106,7 +106,10 @@ class PersistDeckBody extends State<MyCustomForm> {
 
   // Cria ou altera o nome de um deck
   void createDeck(Deck deckReceived) {
-    if (deckReceived == null) {
+    myController.text = myController.text.trimLeft();
+    myController.text = myController.text.trimRight();
+
+    if (deckReceived == null && myController.text != '') {
       Provider.of<Collection>(context, listen: false)
           .createDeck(myController.text);
     } else if (myController.text != '') {
