@@ -11,6 +11,7 @@ import 'InGame.dart';
 * Tela de seleção de deck (Selecione um Deck) com listagem dos decks
 */
 class DeckSelectionView extends StatelessWidget {
+  //cria a tela de seleção  de deck com os decks importandos da coleção
   static const routeName = '/DeckSelectionView';
 
   @override

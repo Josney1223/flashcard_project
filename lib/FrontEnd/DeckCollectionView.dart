@@ -3,7 +3,7 @@ import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:flashcard_project/FrontEnd/FlashcardCollectionView.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
-import 'package:flashcard_project/FrontEnd/PersistDeck.dart';
+import 'package:flashcard_project/FrontEnd/NameDeck.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
@@ -55,7 +55,7 @@ class DeckCollectionView extends StatelessWidget {
                               onPressed: () {
                                 Navigator.pushNamed(
                                   context,
-                                  PersistDeck.routeName,
+                                  NameDeck.routeName,
                                   arguments: ScreenArguments(null),
                                 );
                                 (context as Element).reassemble();

@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 /*
 * Tela de persistencia de decks
 */
-class PersistDeck extends StatelessWidget {
+class NameDeck extends StatelessWidget {
   static const routeName = '/persistDeck';
 
   Deck finalDeck;

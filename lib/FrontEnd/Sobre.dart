@@ -5,6 +5,7 @@ import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 * Tela SOBBRE do aplicativo
 */
 class Sobre extends StatelessWidget {
+  //cria a tela que passa infromações do projeto e nome dos criadores do projeto
   @override
   Widget build(BuildContext context) {
     return Scaffold(

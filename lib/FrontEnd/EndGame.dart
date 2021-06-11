@@ -7,6 +7,7 @@ import 'Menu.dart';
 Tela de fim de jogo
 */
 class EndGame extends StatelessWidget {
+  //cria a tela de fim de jogo mostrandoo a quantidade de acertos e erros
   static const routeName = '/endgame';
 
   @override
@@ -22,6 +23,7 @@ class EndGame extends StatelessWidget {
                 image: AssetImage('assets/flash-cards.png'),
                 width: 100,
               ),
+              SizedBox(height: 10),
               Text(
                 'FIM DE JOGO!',
                 style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),

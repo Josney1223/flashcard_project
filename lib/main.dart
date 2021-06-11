@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
 import 'package:flashcard_project/FrontEnd/Menu.dart';
 import 'package:flashcard_project/FrontEnd/Sobre.dart';
-import 'package:flashcard_project/FrontEnd/PersistDeck.dart';
+import 'package:flashcard_project/FrontEnd/NameDeck.dart';
 import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'FrontEnd/EndGame.dart';
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         EndGame.routeName: (context) => EndGame(),
         FlashcardCollectionView.routeName: (context) =>
             FlashcardCollectionView(),
-        PersistDeck.routeName: (context) => PersistDeck(),
+        NameDeck.routeName: (context) => NameDeck(),
         EditFlashcard.routeName: (context) => EditFlashcard(),
         DeckSelectionView.routeName: (context) => DeckSelectionView(),
         InGame.routeName: (context) => InGame(),

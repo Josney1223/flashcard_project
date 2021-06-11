@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flashcard_project/BackEnd/GameplayLoop.dart';
 import 'package:flashcard_project/FrontEnd/EndGame.dart';
 import 'package:flip_card/flip_card.dart';
@@ -54,6 +53,7 @@ class _InGameState extends State<InGame> {
     this.isVisible = false;
   }
 
+// faz a tela do jogo com o nome do deck, score, o flashcard com animação e as opções de acertar ou errar
   @override
   Widget build(BuildContext context) {
     return Scaffold(
