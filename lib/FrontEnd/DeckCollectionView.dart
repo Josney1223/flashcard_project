@@ -50,7 +50,7 @@ class DeckCollectionView extends StatelessWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   )),
-                              child: Text("Criar Deck"),
+                              child: Text("  Criar Deck  "),
                               onPressed: () {
                                 Navigator.pushNamed(
                                   context,
@@ -61,7 +61,28 @@ class DeckCollectionView extends StatelessWidget {
                               },
                             ),
                             SizedBox(
-                              width: 50,
+                              width: 35,
+                            ),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  primary: Color.fromRGBO(245, 170, 180, 1),
+                                  elevation: 8,
+                                  shadowColor: Colors.grey,
+                                  padding: EdgeInsets.all(20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(80.0)),
+                                  textStyle: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              child: Text("Salvar"),
+                              onPressed: () {
+                                Provider.of<Collection>(context).saveFile();
+                              },
+                            ),
+                            SizedBox(
+                              width: 35,
                             ),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -81,7 +102,7 @@ class DeckCollectionView extends StatelessWidget {
                             )
                           ],
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 13),
                         GoBackButton(),
                       ],
                     )))));

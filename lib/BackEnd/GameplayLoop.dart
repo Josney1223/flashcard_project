@@ -32,6 +32,7 @@ class GameplayLoop extends ChangeNotifier {
     this._flashcard = this._deck.pullCard();
     if (this._flashcard == null) {
       this._deck.reset();
+      this._flashcard = this._deck.pullCard();
       this._end = true;
     }
     notifyListeners();

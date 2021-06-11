@@ -14,40 +14,42 @@ class EndGame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(30),
-          child: Column(
-            children: <Widget>[
-              Image(
-                image: AssetImage('assets/flash-cards.png'),
-                width: 100,
-              ),
-              SizedBox(height: 10),
-              Text(
-                'FIM DE JOGO!',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 35),
-              Text(
-                'SEU SCORE FOI...',
-                style: TextStyle(fontSize: 30),
-              ),
-              SizedBox(height: 35),
-              Text(
-                'ACERTOS: ' +
-                    Provider.of<GameplayLoop>(context).getHit().toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-              SizedBox(height: 5),
-              Text(
-                'ERROS: ' +
-                    Provider.of<GameplayLoop>(context).getMiss().toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-              SizedBox(height: 250),
-              MenuButton(),
-            ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(30),
+            child: Column(
+              children: <Widget>[
+                Image(
+                  image: AssetImage('assets/flash-cards.png'),
+                  width: 100,
+                ),
+                SizedBox(height: 10),
+                Text(
+                  'FIM DE JOGO!',
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 35),
+                Text(
+                  'SEU SCORE FOI...',
+                  style: TextStyle(fontSize: 30),
+                ),
+                SizedBox(height: 35),
+                Text(
+                  'ACERTOS: ' +
+                      Provider.of<GameplayLoop>(context).getHit().toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  'ERROS: ' +
+                      Provider.of<GameplayLoop>(context).getMiss().toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+                SizedBox(height: 250),
+                MenuButton(),
+              ],
+            ),
           ),
         ),
       ),
