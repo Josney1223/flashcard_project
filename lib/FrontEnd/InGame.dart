@@ -20,10 +20,16 @@ class InGame extends StatefulWidget {
 class _InGameState extends State<InGame> {
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   bool isVisible = false;
+  List<bool> isSelected = [false];
 
-  void CheckEndGame(BuildContext context, bool end) {
-    //
-    if (end) {
+  void CheckEndGame(BuildContext context) {
+    // Puxa a proxima carta e garante que o sistema ira para a tela final caso termine o baralho
+    if (isSelected[0]) {
+      Provider.of<GameplayLoop>(context, listen: false).nextRandomCard();
+    } else {
+      Provider.of<GameplayLoop>(context, listen: false).nextCard();
+    }
+    if (Provider.of<GameplayLoop>(context, listen: false).getEnd()) {
       Navigator.pushNamed(context, EndGame.routeName);
     }
   }
@@ -40,24 +46,18 @@ class _InGameState extends State<InGame> {
     if (!cardKey.currentState.isFront) {
       cardKey.currentState.toggleCard();
       new Timer(new Duration(milliseconds: 300), () {
-        Provider.of<GameplayLoop>(context, listen: false).nextCard();
-        CheckEndGame(context,
-            Provider.of<GameplayLoop>(context, listen: false).getEnd());
+        CheckEndGame(context);
       });
     } else {
-      Provider.of<GameplayLoop>(context, listen: false).nextCard();
-      CheckEndGame(
-          context, Provider.of<GameplayLoop>(context, listen: false).getEnd());
+      CheckEndGame(context);
     }
 
     this.isVisible = false;
   }
 
-// faz a tela do jogo com o nome do deck, score, o flashcard com animação e as opções de acertar ou errar e botão de voltar
-  List<bool> isSelected = [false];
-
   @override
   Widget build(BuildContext context) {
+    // faz a tela do jogo com o nome do deck, score, o flashcard com animação e as opções de acertar ou errar e botão de voltar
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(

@@ -77,6 +77,11 @@ class FlashcardList {
     return this.flashcardList[index];
   }
 
+  Flashcard getNextCard() {
+    // Retorna um Flashcard aleatório da List
+    return this.flashcardList.first;
+  }
+
   Flashcard getRandomCard() {
     // Retorna um Flashcard aleatório da List
     Random random = Random();

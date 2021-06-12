@@ -83,12 +83,23 @@ class Deck {
     return this.qtdFlashcards;
   }
 
+  Flashcard pullRandomCard() {
+    // Remove um Flashcard aleatoriamente do this._deck, insere ele no this._grave e o retorna
+    if (this.deck.lenght() == 0) {
+      return null;
+    }
+    Flashcard card = this.deck.getRandomCard();
+    this.deck.remove(card);
+    this.grave.add(card);
+    return card;
+  }
+
   Flashcard pullCard() {
     // Remove um Flashcard do this._deck, insere ele no this._grave e o retorna
     if (this.deck.lenght() == 0) {
       return null;
     }
-    Flashcard card = this.deck.getRandomCard();
+    Flashcard card = this.deck.getNextCard();
     this.deck.remove(card);
     this.grave.add(card);
     return card;

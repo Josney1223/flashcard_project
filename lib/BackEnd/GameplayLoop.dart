@@ -28,6 +28,16 @@ class GameplayLoop extends ChangeNotifier {
     this._miss++;
   }
 
+  void nextRandomCard() {
+    this._flashcard = this._deck.pullRandomCard();
+    if (this._flashcard == null) {
+      this._deck.reset();
+      this._flashcard = this._deck.pullRandomCard();
+      this._end = true;
+    }
+    notifyListeners();
+  }
+
   void nextCard() {
     this._flashcard = this._deck.pullCard();
     if (this._flashcard == null) {
