@@ -53,6 +53,14 @@ class FlashcardList {
     }
   }
 
+  void setFlashcardList(List<Flashcard> fl) {
+    this.flashcardList = List.from(fl);
+  }
+
+  List getFlashcardList() {
+    return this.flashcardList;
+  }
+
   bool checkContains(Flashcard card) {
     // Valida se já existe um Flashcard X na lista
     int i = 0;

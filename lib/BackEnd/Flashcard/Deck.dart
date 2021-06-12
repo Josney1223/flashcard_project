@@ -25,28 +25,26 @@ class Deck {
 
   @JsonKey(required: true, disallowNullValue: true)
   FlashcardList deck;
-  @JsonKey(required: true, disallowNullValue: true)
-  FlashcardList grave;
+  @JsonKey(required: false, disallowNullValue: true)
+  FlashcardList deckCopy;
   @JsonKey(required: true, disallowNullValue: true)
   int qtdFlashcards;
   @JsonKey(required: true, disallowNullValue: true)
   String deckName;
 
-  Deck(this.deckName, {this.deck, this.grave, this.qtdFlashcards}) {
+  Deck(this.deckName, {this.deck, this.qtdFlashcards}) {
     this.deck = (deck == null) ? new FlashcardList() : deck;
-    this.grave = (grave == null) ? new FlashcardList() : grave;
-    this.qtdFlashcards = (qtdFlashcards == null)
-        ? this.deck.lenght() + this.grave.lenght()
-        : qtdFlashcards;
+    this.qtdFlashcards =
+        (qtdFlashcards == null) ? this.deck.lenght() : qtdFlashcards;
+    this.deckCopy = new FlashcardList.fromJson(this.deck.toJson());
   }
 
   void reset() {
-    // Coloca todos os Flashcards contidos em this._grave em this._deck e
-    // reinicia o this.grave
-    for (var i = 0; i < this.grave.lenght(); i++) {
-      this.deck.add(this.grave.getCard(i));
-    }
-    this.grave = new FlashcardList();
+    //Reseta o deck
+    print(this.deck.lenght().toString() +
+        " " +
+        this.deckCopy.lenght().toString());
+    this.deck.setFlashcardList(this.deckCopy.getFlashcardList());
   }
 
   void insertCard(Flashcard card) {
@@ -63,7 +61,7 @@ class Deck {
 
   void removeCard(Flashcard card) {
     // Remove um Flashcard em this._deck
-    reset();
+    this.reset();
     this.deck.remove(card);
     this.qtdFlashcards--;
   }
@@ -90,7 +88,6 @@ class Deck {
     }
     Flashcard card = this.deck.getRandomCard();
     this.deck.remove(card);
-    this.grave.add(card);
     return card;
   }
 
@@ -101,19 +98,18 @@ class Deck {
     }
     Flashcard card = this.deck.getNextCard();
     this.deck.remove(card);
-    this.grave.add(card);
     return card;
   }
 
   bool checkContains(Flashcard card) {
     // Retorna true caso tenha encontrado uma cópia identica do Flashcard
     // dentro do deck
-    reset();
+    this.reset();
     return this.deck.checkContains(card);
   }
 
   FlashcardList getCopy() {
-    reset();
+    this.reset();
     return this.deck;
   }
 
