@@ -149,7 +149,8 @@ class Collection extends ChangeNotifier {
       notify('Arquivo não encontrado');
     } else {
       try {
-        List<dynamic> dynamicList = jsonDecode(jsonLoaded);
+        List<dynamic> dynamicList =
+            jsonDecode(utf8.decode(jsonLoaded.codeUnits));
         List<Deck> collectionList = [];
 
         for (var item in dynamicList) {

@@ -34,6 +34,7 @@ class GameplayLoop extends ChangeNotifier {
       this._deck.reset();
       this._flashcard = this._deck.pullRandomCard();
       this._end = true;
+      this._deck.reset();
     }
     notifyListeners();
   }
@@ -44,6 +45,7 @@ class GameplayLoop extends ChangeNotifier {
       this._deck.reset();
       this._flashcard = this._deck.pullCard();
       this._end = true;
+      this._deck.reset();
     }
     notifyListeners();
   }

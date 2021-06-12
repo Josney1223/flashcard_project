@@ -41,10 +41,10 @@ class Deck {
 
   void reset() {
     //Reseta o deck
+    this.deck.setFlashcardList(this.deckCopy.getFlashcardList());
     print(this.deck.lenght().toString() +
         " " +
         this.deckCopy.lenght().toString());
-    this.deck.setFlashcardList(this.deckCopy.getFlashcardList());
   }
 
   void insertCard(Flashcard card) {
