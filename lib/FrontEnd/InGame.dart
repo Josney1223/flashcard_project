@@ -54,6 +54,8 @@ class _InGameState extends State<InGame> {
   }
 
 // faz a tela do jogo com o nome do deck, score, o flashcard com animação e as opções de acertar ou errar e botão de voltar
+  List<bool> isSelected = [false];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +65,36 @@ class _InGameState extends State<InGame> {
                 child: Padding(
                     padding: EdgeInsets.all(30),
                     child: Column(children: <Widget>[
-                      SizedBox(height: 10),
-                      Text(
-                        Provider.of<GameplayLoop>(context).getDeckName(),
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+                      Visibility(
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(height: 10),
+                              SizedBox(
+                                width: 100,
+                              ),
+                              Text(
+                                Provider.of<GameplayLoop>(context)
+                                    .getDeckName(),
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                width: 45,
+                              ),
+                              ToggleButtons(
+                                children: <Widget>[
+                                  Icon(Icons.shuffle),
+                                ],
+                                onPressed: (int index) {
+                                  setState(() {
+                                    isSelected[index] = !isSelected[index];
+                                  });
+                                },
+                                isSelected: isSelected,
+                              ),
+                            ]),
                       ),
                       SizedBox(height: 40),
                       Consumer<GameplayLoop>(
