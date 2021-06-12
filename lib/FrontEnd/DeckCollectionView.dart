@@ -78,7 +78,8 @@ class DeckCollectionView extends StatelessWidget {
                                   )),
                               child: Text("Salvar"),
                               onPressed: () {
-                                Provider.of<Collection>(context).saveFile();
+                                Provider.of<Collection>(context, listen: false)
+                                    .saveFile();
                               },
                             ),
                             SizedBox(
