@@ -95,9 +95,18 @@ class Collection extends ChangeNotifier {
   }
 
   void importDeck(String jsonDeck) {
-    // Chama a função importDeck da classe ImportExport
+    Deck deck;
 
-    Deck deck = Deck.fromJson(jsonDecode(utf8.decode(jsonDeck.codeUnits)));
+    try {
+      deck = Deck.fromJson(jsonDecode(utf8.decode(jsonDeck.codeUnits)));
+    } catch (e) {
+      try {
+        deck = Deck.fromJson(jsonDecode(jsonDeck));
+      } catch (e) {
+        notify("Náo foi possivel carregar o deck");
+      }
+    }
+
     String nomeDoDeck = deck.getName();
 
     // Se existir um deck com os parametros

@@ -86,23 +86,12 @@ class DeckCollectionView extends StatelessWidget {
                                           title: Text("Cole o deck aqui",
                                               textAlign: TextAlign.center),
                                           children: [
-                                            Flex(direction: Axis.horizontal, children: [Expanded(child: PasteBox()),],),
-                                            SizedBox(height: 25,),
                                             Flex(
-                                              mainAxisAlignment: MainAxisAlignment.center,
                                               direction: Axis.horizontal,
                                               children: [
-                                                ConstrainedBox(
-                                                  constraints: BoxConstraints(maxWidth: 100),
-                                                  child: ElevatedButton(
-                                                    onPressed: () {}, child: Text("Salvar"),
-                                                    style: ElevatedButton.styleFrom(
-                                                      primary: Colors.red.shade300,
-                                                    ),
-                                                  )),
+                                                Expanded(child: PasteBox()),
                                               ],
-                                            )
-                                            
+                                            ),
                                           ],
                                         ));
                               },
@@ -219,11 +208,9 @@ class DeckListigView extends StatelessWidget {
                     Column(children: [
                       ConstrainedBox(
                         constraints: BoxConstraints(minWidth: 100),
-                        child:
-                        Text(deck.getName(),
-                            style: TextStyle(
-                                fontWeight:
-                                    FontWeight.bold)),
+                        child: Text(deck.getName(),
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
                       ), //texto que será copiado
                       SizedBox(
                         height: 10,
@@ -359,6 +346,27 @@ class _PasteBoxState extends State<PasteBox> {
             child: Center(child: Text('Colar')),
           ),
         ),
+        SizedBox(
+          height: 25,
+        ),
+        Flex(
+          mainAxisAlignment: MainAxisAlignment.center,
+          direction: Axis.horizontal,
+          children: [
+            ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 100),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Provider.of<Collection>(context, listen: false)
+                        .importDeck(pasteValue);
+                  },
+                  child: Text("Salvar"),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red.shade300,
+                  ),
+                )),
+          ],
+        )
       ],
     );
   }
