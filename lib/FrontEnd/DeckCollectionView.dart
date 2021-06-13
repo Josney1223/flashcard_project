@@ -81,16 +81,14 @@ class DeckCollectionView extends StatelessWidget {
                               child: Text("Importar Deck"),
                               onPressed: () {
                                 showDialog(
-                                  context: context, 
-                                  builder: (_) => SimpleDialog(
-                                    title: Text("Cole o negócio aqui"),
-                                    children: [
-                                      Expanded(
-                                        child: PasteBox()
-                                      ),
-                                    ],
-                                  )
-                                );
+                                    context: context,
+                                    builder: (_) => SimpleDialog(
+                                          title: Text("Cole o deck aqui",
+                                              textAlign: TextAlign.center),
+                                          children: [
+                                            Expanded(child: PasteBox()),
+                                          ],
+                                        ));
                               },
                             )
                           ],
@@ -102,25 +100,26 @@ class DeckCollectionView extends StatelessWidget {
                             GoBackButton(),
                             SizedBox(width: 35),
                             ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                primary: Color.fromRGBO(245, 170, 180, 1),
-                                elevation: 8,
-                                shadowColor: Colors.grey,
-                                padding: EdgeInsets.all(20),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.circular(80.0)),
-                                textStyle: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            child: Text("     Salvar    "),
-                            onPressed: () {
-                              Provider.of<Collection>(context, listen: false)
-                                  .saveFile();
-                            },
-                          ),
-                        ],)
+                              style: ElevatedButton.styleFrom(
+                                  primary: Color.fromRGBO(245, 170, 180, 1),
+                                  elevation: 8,
+                                  shadowColor: Colors.grey,
+                                  padding: EdgeInsets.all(20),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(80.0)),
+                                  textStyle: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                              child: Text("     Salvar    "),
+                              onPressed: () {
+                                Provider.of<Collection>(context, listen: false)
+                                    .saveFile();
+                              },
+                            ),
+                          ],
+                        )
                       ],
                     )))));
   }
@@ -196,21 +195,24 @@ class DeckListigView extends StatelessWidget {
         break;
       case selectedDeckActions.EXPORTAR:
         showDialog(
-          context: context, 
-          builder: (_) => SimpleDialog(
-            title: Text("Copiar para área de transferência"),
-            children: [
-              Column(
-                children: [
-                  Text("teste", 
-                  style: TextStyle(fontWeight: FontWeight.bold) ), //texto que será copiado
-                  SizedBox(height: 10,),
-                  CopyBox()
-                ]
-              ),
-            ],
-          )
-        );
+            context: context,
+            builder: (_) => SimpleDialog(
+                  title: Text("Copiar para área de transferência",
+                      textAlign: TextAlign.center),
+                  children: [
+                    Column(children: [
+                      Text(deck.getName(),
+                          style: TextStyle(
+                              fontWeight:
+                                  FontWeight.bold)), //texto que será copiado
+                      SizedBox(
+                        height: 10,
+                      ),
+                      CopyBox(Provider.of<Collection>(context)
+                          .exportDeck(deck.getName()))
+                    ]),
+                  ],
+                ));
         break;
     }
   }
@@ -246,11 +248,22 @@ class DeckListigView extends StatelessWidget {
 }
 
 class CopyBox extends StatefulWidget {
+  String s;
+
+  CopyBox(String s) {
+    this.s = s;
+  }
   @override
-  _CopyBoxState createState() => _CopyBoxState();
+  _CopyBoxState createState() => _CopyBoxState(this.s);
 }
 
 class _CopyBoxState extends State<CopyBox> {
+  String s;
+
+  _CopyBoxState(String s) {
+    this.s = s;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Flex(
@@ -259,21 +272,20 @@ class _CopyBoxState extends State<CopyBox> {
       children: <Widget>[
         InkWell(
           onTap: () {
-            FlutterClipboard.copy("teste").then(( value ) =>
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("Copiado com sucesso"),
-                ),
-              ));
+            FlutterClipboard.copy(this.s)
+                .then((value) => ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Copiado com sucesso"),
+                      ),
+                    ));
           },
           child: Container(
             margin: EdgeInsets.only(top: 5),
             width: 80,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.lightGreen.shade100,
-              borderRadius: BorderRadius.circular(15)
-            ),
+                color: Colors.lightGreen.shade100,
+                borderRadius: BorderRadius.circular(15)),
             child: Center(child: Text('Copiar')),
           ),
         ),
@@ -289,7 +301,7 @@ class PasteBox extends StatefulWidget {
 
 class _PasteBoxState extends State<PasteBox> {
   TextEditingController field = TextEditingController();
-  String pasteValue='';
+  String pasteValue = '';
   @override
   Widget build(BuildContext context) {
     return Flex(
@@ -298,24 +310,22 @@ class _PasteBoxState extends State<PasteBox> {
       children: <Widget>[
         ConstrainedBox(
           constraints: BoxConstraints(maxWidth: 250),
-          child:
-            TextFormField(
-              controller: field,
-              decoration: InputDecoration(
-                hintText: 'Cole'
-              ),
-            ),
+          child: TextFormField(
+            controller: field,
+            decoration: InputDecoration(hintText: 'Cole'),
+          ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
         InkWell(
           onTap: () {
-            FlutterClipboard.paste().then(
-            (value) {
+            FlutterClipboard.paste().then((value) {
               setState(() {
                 if (value.isNotEmpty) {
                   field.text = value.trim();
                   pasteValue = value.trim();
-                } 
+                }
               });
             });
           },
@@ -324,9 +334,8 @@ class _PasteBoxState extends State<PasteBox> {
             width: 80,
             height: 40,
             decoration: BoxDecoration(
-              color: Colors.lightGreen.shade100,
-              borderRadius: BorderRadius.circular(15)
-            ),
+                color: Colors.lightGreen.shade100,
+                borderRadius: BorderRadius.circular(15)),
             child: Center(child: Text('Colar')),
           ),
         ),
