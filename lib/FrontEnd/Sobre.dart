@@ -13,15 +13,15 @@ class Sobre extends StatelessWidget {
         body: SingleChildScrollView(
             child: Center(
                 child: Padding(
-                    padding: EdgeInsets.all(30),
+                    padding: EdgeInsets.only(top: 50),
                     child: Column(
                       children: <Widget>[
                         Image(
-                          image: AssetImage('assets/flash-cards.png'),
+                          image: AssetImage('assets/flash-cards.png'), filterQuality: FilterQuality.medium,
                           width: 100,
                         ),
                         SizedBox(height: 10),
-                        Text('KADO APP'),
+                        Text('KADO APP', style: TextStyle(fontWeight: FontWeight.bold),),
                         SizedBox(height: 60),
                         Text(
                           'SOBRE O APP',

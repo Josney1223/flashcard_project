@@ -50,7 +50,7 @@ class IconAndTextBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(image: AssetImage(this._imgPath), width: 50.0, height: 50.0),
+            Image(image: AssetImage(this._imgPath), width: 50.0, height: 50.0, filterQuality: FilterQuality.medium,),
             SizedBox(height: 10),
             Text(this._title),
           ],

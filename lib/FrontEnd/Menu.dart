@@ -15,23 +15,23 @@ class Menu extends StatelessWidget {
                 padding: EdgeInsets.only(top: 50),
                 child: Column(children: <Widget>[
                   Image(
-                    image: AssetImage('assets/flash-cards.png'),
+                    image: AssetImage('assets/flash-cards.png'), filterQuality: FilterQuality.medium,
                     width: 100,
                   ),
                   SizedBox(height: 10),
-                  Text('KADO APP'),
+                  Text('KADO APP', style: TextStyle(fontWeight: FontWeight.bold),),
                   SizedBox(height: 45),
                   MenuButtonWithIcon('JOGAR', Color.fromRGBO(245, 170, 180, 1),
-                      'assets/play-button.png', '/deckSelection'),
+                      'assets/play-button-colorful.png', '/deckSelection'),
                   SizedBox(height: 25),
                   MenuButtonWithIcon(
                       'COLEÇÃO',
                       Color.fromRGBO(183, 235, 209, 1),
-                      'assets/paper.png',
+                      'assets/folders.png',
                       '/deckCollection'),
                   SizedBox(height: 25),
                   MenuButtonWithIcon('SOBRE', Color.fromRGBO(255, 224, 162, 1),
-                      'assets/information.png', '/sobre'),
+                      'assets/information-colorful.png', '/sobre'),
                 ]))));
   }
 }

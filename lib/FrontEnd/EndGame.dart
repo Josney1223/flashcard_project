@@ -21,8 +21,8 @@ class EndGame extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Image(
-                  image: AssetImage('assets/flash-cards.png'),
-                  width: 100,
+                  image: AssetImage('assets/finish-line.png'),
+                  width: 200,
                 ),
                 SizedBox(height: 10),
                 Text(

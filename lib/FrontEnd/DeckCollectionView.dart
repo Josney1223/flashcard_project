@@ -6,6 +6,7 @@ import 'package:flashcard_project/FrontEnd/NameDeck.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
+import 'package:clipboard/clipboard.dart';
 
 /*
 * Tela de visualização de decks
@@ -16,6 +17,7 @@ class DeckCollectionView extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
             child: Center(
                 child: Padding(
                     padding: EdgeInsets.only(
@@ -76,35 +78,49 @@ class DeckCollectionView extends StatelessWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                   )),
-                              child: Text("Salvar"),
-                              onPressed: () {
-                                Provider.of<Collection>(context, listen: false)
-                                    .saveFile();
-                              },
-                            ),
-                            SizedBox(
-                              width: 35,
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  primary: Color.fromRGBO(245, 170, 180, 1),
-                                  elevation: 8,
-                                  shadowColor: Colors.grey,
-                                  padding: EdgeInsets.all(20),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(80.0)),
-                                  textStyle: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                  )),
                               child: Text("Importar Deck"),
-                              onPressed: () {},
+                              onPressed: () {
+                                showDialog(
+                                  context: context, 
+                                  builder: (_) => SimpleDialog(
+                                    title: Text("Cole o negócio aqui"),
+                                    children: [
+                                      Expanded(
+                                        child: PasteBox()
+                                      ),
+                                    ],
+                                  )
+                                );
+                              },
                             )
                           ],
                         ),
                         SizedBox(height: 13),
-                        GoBackButton(),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GoBackButton(),
+                            SizedBox(width: 35),
+                            ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                primary: Color.fromRGBO(245, 170, 180, 1),
+                                elevation: 8,
+                                shadowColor: Colors.grey,
+                                padding: EdgeInsets.all(20),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(80.0)),
+                                textStyle: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            child: Text("     Salvar    "),
+                            onPressed: () {
+                              Provider.of<Collection>(context, listen: false)
+                                  .saveFile();
+                            },
+                          ),
+                        ],)
                       ],
                     )))));
   }
@@ -179,7 +195,22 @@ class DeckListigView extends StatelessWidget {
         );
         break;
       case selectedDeckActions.EXPORTAR:
-        print("exportar");
+        showDialog(
+          context: context, 
+          builder: (_) => SimpleDialog(
+            title: Text("Copiar para área de transferência"),
+            children: [
+              Column(
+                children: [
+                  Text("teste", 
+                  style: TextStyle(fontWeight: FontWeight.bold) ), //texto que será copiado
+                  SizedBox(height: 10,),
+                  CopyBox()
+                ]
+              ),
+            ],
+          )
+        );
         break;
     }
   }
@@ -190,6 +221,7 @@ class DeckListigView extends StatelessWidget {
       width: 500,
       height: MediaQuery.of(context).size.height * 0.75,
       child: GridView.builder(
+        primary: false,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: 2.5),
         padding: EdgeInsets.only(top: 50),
@@ -209,6 +241,96 @@ class DeckListigView extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class CopyBox extends StatefulWidget {
+  @override
+  _CopyBoxState createState() => _CopyBoxState();
+}
+
+class _CopyBoxState extends State<CopyBox> {
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        InkWell(
+          onTap: () {
+            FlutterClipboard.copy("teste").then(( value ) =>
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Copiado com sucesso"),
+                ),
+              ));
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 5),
+            width: 80,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.lightGreen.shade100,
+              borderRadius: BorderRadius.circular(15)
+            ),
+            child: Center(child: Text('Copiar')),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class PasteBox extends StatefulWidget {
+  @override
+  _PasteBoxState createState() => _PasteBoxState();
+}
+
+class _PasteBoxState extends State<PasteBox> {
+  TextEditingController field = TextEditingController();
+  String pasteValue='';
+  @override
+  Widget build(BuildContext context) {
+    return Flex(
+      direction: Axis.vertical,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: 250),
+          child:
+            TextFormField(
+              controller: field,
+              decoration: InputDecoration(
+                hintText: 'Cole'
+              ),
+            ),
+        ),
+        SizedBox(height: 10,),
+        InkWell(
+          onTap: () {
+            FlutterClipboard.paste().then(
+            (value) {
+              setState(() {
+                if (value.isNotEmpty) {
+                  field.text = value.trim();
+                  pasteValue = value.trim();
+                } 
+              });
+            });
+          },
+          child: Container(
+            margin: EdgeInsets.only(top: 5),
+            width: 80,
+            height: 40,
+            decoration: BoxDecoration(
+              color: Colors.lightGreen.shade100,
+              borderRadius: BorderRadius.circular(15)
+            ),
+            child: Center(child: Text('Colar')),
+          ),
+        ),
+      ],
     );
   }
 }
