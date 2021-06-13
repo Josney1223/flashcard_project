@@ -86,7 +86,23 @@ class DeckCollectionView extends StatelessWidget {
                                           title: Text("Cole o deck aqui",
                                               textAlign: TextAlign.center),
                                           children: [
-                                            Expanded(child: PasteBox()),
+                                            Flex(direction: Axis.horizontal, children: [Expanded(child: PasteBox()),],),
+                                            SizedBox(height: 25,),
+                                            Flex(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              direction: Axis.horizontal,
+                                              children: [
+                                                ConstrainedBox(
+                                                  constraints: BoxConstraints(maxWidth: 100),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {}, child: Text("Salvar"),
+                                                    style: ElevatedButton.styleFrom(
+                                                      primary: Colors.red.shade300,
+                                                    ),
+                                                  )),
+                                              ],
+                                            )
+                                            
                                           ],
                                         ));
                               },
@@ -201,15 +217,19 @@ class DeckListigView extends StatelessWidget {
                       textAlign: TextAlign.center),
                   children: [
                     Column(children: [
-                      Text(deck.getName(),
-                          style: TextStyle(
-                              fontWeight:
-                                  FontWeight.bold)), //texto que será copiado
+                      ConstrainedBox(
+                        constraints: BoxConstraints(minWidth: 100),
+                        child:
+                        Text(deck.getName(),
+                            style: TextStyle(
+                                fontWeight:
+                                    FontWeight.bold)),
+                      ), //texto que será copiado
                       SizedBox(
                         height: 10,
                       ),
                       CopyBox(Provider.of<Collection>(context)
-                          .exportDeck(deck.getName()))
+                          .exportDeck(deck.getName())),
                     ]),
                   ],
                 ));
