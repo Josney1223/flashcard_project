@@ -16,7 +16,7 @@ class GoBackButton extends StatelessWidget {
               primary: Color.fromRGBO(245, 170, 180, 1),
               elevation: 8,
               shadowColor: Colors.grey,
-              padding: EdgeInsets.all(20),
+              padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(80.0)),
               textStyle: TextStyle(
@@ -44,8 +44,8 @@ class IconAndTextBoxHoriz extends StatelessWidget {
           children: [
             Image(
                 image: AssetImage('assets/left-arrow.png'),
-                width: 50.0,
-                height: 20.0),
+                width: 45.0,
+                height: 15.0),
             SizedBox(height: 10),
             Text(this._title),
           ],
