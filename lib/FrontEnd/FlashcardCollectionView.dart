@@ -173,6 +173,7 @@ class FlashCardListingView extends StatelessWidget {
       width: 500,
       height: MediaQuery.of(context).size.height * 0.75,
       child: GridView.builder(
+        primary: false,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: 2.5),
         padding: EdgeInsets.only(top: 50),
