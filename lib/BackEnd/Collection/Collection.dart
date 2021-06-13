@@ -1,10 +1,11 @@
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
-import 'package:flashcard_project/BackEnd/Collection/SaveLoad.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 import '../Flashcard/Deck.dart';
+import 'SaveLoad/SaveLoadMobile.dart'
+    if (dart.library.html) 'SaveLoad/SaveLoadWeb.dart';
 
 import 'dart:convert';
 part 'Collection.g.dart';
@@ -136,13 +137,13 @@ class Collection extends ChangeNotifier {
 
   void saveFile() {
     // Chama a função saveFile da classe SaveLoad
-    SaveLoad().saveFile(jsonEncode(this.decks));
+    save(jsonEncode(this.decks));
   }
 
   Future<void> loadFile() async {
     // Chama a função loadFile da classe SaveLoad
 
-    String jsonLoaded = await SaveLoad().loadFile();
+    String jsonLoaded = await load();
     if (jsonLoaded == '') {
       notify('Arquivo não encontrado');
     } else {
