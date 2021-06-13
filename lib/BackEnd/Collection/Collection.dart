@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:json_annotation/json_annotation.dart';
 import '../Flashcard/Deck.dart';
-import 'ImportExport.dart';
 
 import 'dart:convert';
 part 'Collection.g.dart';
@@ -97,7 +96,7 @@ class Collection extends ChangeNotifier {
   void importDeck(String jsonDeck) {
     // Chama a função importDeck da classe ImportExport
 
-    Deck deck = Deck.fromJson(ImportExport().importDeck(jsonDeck));
+    Deck deck = Deck.fromJson(jsonDecode(utf8.decode(jsonDeck.codeUnits)));
     String nomeDoDeck = deck.getName();
 
     // Se existir um deck com os parametros
@@ -116,8 +115,7 @@ class Collection extends ChangeNotifier {
       }
       this.decks.add(deck);
     } else {
-      // O deck no caminho especificado
-      notify('nao sei o padrao ainda');
+      notify('O deck não foi reconhecido');
     }
     notifyListeners();
   }
@@ -128,7 +126,7 @@ class Collection extends ChangeNotifier {
     String encodedDeck;
 
     if (index >= 0) {
-      encodedDeck = ImportExport().exportDeck(this.decks[index].toJson());
+      encodedDeck = jsonEncode(this.decks[index].toJson());
     } else {
       // O deck com o deckName não foi encontrado
       notify('O deck não foi encontrado');
