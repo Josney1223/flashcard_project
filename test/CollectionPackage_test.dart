@@ -225,8 +225,7 @@ void main() {
 
       String exportString = colecao.exportDeck(exportedDeck1);
 
-      Map<String, dynamic> jsonExported =
-          jsonDecode(utf8.decode(base64.decode(exportString)));
+      Map<String, dynamic> jsonExported = jsonDecode(exportString);
 
       Deck exportedDeck = Deck.fromJson(jsonExported);
 
@@ -237,6 +236,18 @@ void main() {
       expect(false, exportedDeck.deck.checkContains(card4));
       expect(false, exportedDeck.deck.checkContains(card5));
       expect(false, exportedDeck.deck.checkContains(card6));
+
+      Collection colecaoNova = new Collection();
+
+      colecaoNova.importDeck(exportString);
+
+      expect(exportedDeck1, colecaoNova.decks[0].deckName);
+      expect(true, colecaoNova.decks[0].deck.checkContains(card1));
+      expect(true, colecaoNova.decks[0].deck.checkContains(card2));
+      expect(true, colecaoNova.decks[0].deck.checkContains(card3));
+      expect(false, colecaoNova.decks[0].deck.checkContains(card4));
+      expect(false, colecaoNova.decks[0].deck.checkContains(card5));
+      expect(false, colecaoNova.decks[0].deck.checkContains(card6));
     });
   });
 }
