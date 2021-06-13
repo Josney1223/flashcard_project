@@ -41,10 +41,8 @@ class Collection extends ChangeNotifier {
     // o nome escolhido não pode ser repetido
 
     // Se já não existe um deck com o mesmo nome, adicione no final
-    if (findDeck(deckName) < 0) {
-      this.decks.add(new Deck(deckName));
-      notifyListeners();
-    }
+    this.decks.add(new Deck(_correctName(deckName)));
+    notifyListeners();
   }
 
   void deleteDeck(String deckName) {
@@ -107,22 +105,9 @@ class Collection extends ChangeNotifier {
       }
     }
 
-    String nomeDoDeck = deck.getName();
-
     // Se existir um deck com os parametros
     if (deck != null) {
-      // e se tiver um com mesmo nome, então bota o deck na coleção
-      if (findDeck(nomeDoDeck) >= 0) {
-        int copies = 1;
-        bool exist = true;
-        while (exist) {
-          if (findDeck(nomeDoDeck + '$copies') < 0) {
-            exist = false;
-          } else {
-            copies++;
-          }
-        }
-      }
+      deck.setName(_correctName(deck.getName()));
       this.decks.add(deck);
     } else {
       notify('O deck não foi reconhecido');
@@ -213,6 +198,25 @@ class Collection extends ChangeNotifier {
       this.decks[index].setName(newDeckName);
     }
     notifyListeners();
+  }
+
+  String _correctName(String nome) {
+    // Verifica se já existe um deck com o nome e existe, então mude o nome
+
+    // Se existir um deck com mesmo nome, então muda o nome
+    if (findDeck(nome) >= 0) {
+      int copies = 1;
+      bool exist = true;
+      while (exist) {
+        if (findDeck(nome + '$copies') < 0) {
+          exist = false;
+          nome = nome + '$copies';
+        } else {
+          copies++;
+        }
+      }
+    }
+    return nome;
   }
 
   // Funções de Json
