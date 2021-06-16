@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flashcard APP',
+      title: 'KADO APP',
       home: Menu(),
       routes: {
         '/deckSelection': (context) => DeckSelectionView(),
