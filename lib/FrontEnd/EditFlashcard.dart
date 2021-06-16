@@ -136,20 +136,23 @@ class EditFlashcardBody extends State<MyCustomForm> {
     myControllerVerso.text = myControllerVerso.text.trimLeft();
     myControllerVerso.text = myControllerVerso.text.trimRight();
 
+    Flashcard f =
+        new Flashcard(myControllerFrente.text, myControllerVerso.text);
+
+    print(f.getFace());
+    print(f.getBack());
+
     if (flashcardReceived == null &&
         myControllerFrente.text != '' &&
         myControllerVerso.text != '') {
-      Provider.of<Collection>(context, listen: false).editDeck(
-          this.deck.getName(),
-          1,
-          new Flashcard(myControllerFrente.text, myControllerVerso.text));
-    } else if (myControllerFrente.text != '' && myControllerVerso.text != '') {
+      print("criou carta");
       Provider.of<Collection>(context, listen: false)
-          .editDeck(this.deck.getName(), 0, this.flashcardReceived);
+          .editDeck(this.deck.getName(), 1, f);
+    } else if (myControllerFrente.text != '' && myControllerVerso.text != '') {
+      print("alterou carta");
       Provider.of<Collection>(context, listen: false).editDeck(
-          this.deck.getName(),
-          1,
-          new Flashcard(myControllerFrente.text, myControllerVerso.text));
+          this.deck.getName(), 2, this.flashcardReceived,
+          replaceCard: f);
     }
   }
 }

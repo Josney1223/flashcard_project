@@ -63,7 +63,7 @@ class DeckListView extends StatelessWidget {
         itemCount: deckList.length,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
-            onTap: () {
+            onTap: () async {
               Provider.of<GameplayLoop>(context, listen: false)
                   .setDeck(this.deckList[index]);
               if (this.deckList[index].getQtd() < 1) {

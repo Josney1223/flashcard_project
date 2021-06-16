@@ -50,6 +50,7 @@ class Deck {
   void insertCard(Flashcard card) {
     // Insere um Flashcard em this._deck
     this.deck.add(card);
+    this.deckCopy.add(card);
     this.qtdFlashcards++;
   }
 
@@ -63,6 +64,7 @@ class Deck {
     // Remove um Flashcard em this._deck
     this.reset();
     this.deck.remove(card);
+    this.deckCopy.remove(card);
     this.qtdFlashcards--;
   }
 
@@ -94,6 +96,7 @@ class Deck {
   Flashcard pullCard() {
     // Remove um Flashcard do this._deck, insere ele no this._grave e o retorna
     if (this.deck.lenght() == 0) {
+      print("oi?");
       return null;
     }
     Flashcard card = this.deck.getNextCard();

@@ -29,7 +29,7 @@ class FlashcardList {
 
   FlashcardList({this.flashcardList}) {
     if (this.flashcardList == null) {
-      this.flashcardList = new List<Flashcard>();
+      this.flashcardList = [];
     }
   }
 

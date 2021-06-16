@@ -36,6 +36,17 @@ class Collection extends ChangeNotifier {
     loadFile();
   }
 
+  void resetDeck(String deckName) {
+    // reseta do deck na lista
+
+    int index = findDeck(deckName);
+
+    if (index >= 0) {
+      this.decks[index].reset();
+      notifyListeners();
+    }
+  }
+
   void createDeck(String deckName) {
     // Cria um deck novo para o usuário utilizando o nome escolhido
     // o nome escolhido não pode ser repetido
