@@ -1,39 +1,31 @@
-import 'package:json_annotation/json_annotation.dart';
-part 'Flashcard.g.dart';
+part of flashcard_package;
 
+/// Classe que representa um flashcard
 @JsonSerializable()
 class Flashcard {
-  /*
-  Classe que contém um flashcard, para ajudar na identificacao e reduzir o 
-  número de duplicatas, ele contém sue frente (this._face) e seu verso
-  (this._back).  
-
-  Métodos:
-  -> String getFace()
-  -> String getBack()
-  */
-
+  /// Variavéis que guardam a frente e o verso do Flashcard
   String face, back;
 
+  /// Método Construtor
   Flashcard(this.face, this.back);
 
+  /// Altera a frente do Flashcard
   void setFace(String front) {
-    // Retorna a frente do Flashcard
     this.face = front;
   }
 
+  /// Altera o verso do Flashcard
   void setBack(String back) {
-    // Retorna o verso do Flashcard
     this.back = back;
   }
 
+  /// Retorna a frente do Flashcard
   String getFace() {
-    // Retorna a frente do Flashcard
     return this.face;
   }
 
+  /// Retorna o verso do Flashcard
   String getBack() {
-    // Retorna o verso do Flashcard
     return this.back;
   }
 

@@ -1,45 +1,25 @@
-import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
+part of flashcard_package;
 
-import 'Flashcard.dart';
-import "dart:core";
-import "dart:math";
-
-import 'package:json_annotation/json_annotation.dart';
-part 'FlashcardList.g.dart';
-
+/// Classe que contém uma lista para armazenar Flashcards.
 @JsonSerializable(explicitToJson: true)
 class FlashcardList {
-  /* 
-  Classe que contém uma lista para armazenar Flashcards. Ao invés de usar 
-  diretamente uma lista, criar uma classe especifica limitaria as opcoes sobre
-  o que podemos fazer com a lista, deixando o código mais simples.
-
-  A unica variável dentro dessa classe é a lista (this._flashcardList)
-
-  Métodos:
-  -> void add(Flashcard card)
-  -> void remove(Flashcard card)
-  -> bool checkContains(Flashcard card)
-  -> int lenght()
-  -> Flashcard getCard(int index)
-  -> Flashcard getRandomCard()
-  */
-
+  /// A lista que contém os Flashcards
   List<Flashcard> flashcardList;
 
+  /// Método Construtor
   FlashcardList({this.flashcardList}) {
     if (this.flashcardList == null) {
       this.flashcardList = [];
     }
   }
 
+  /// Adiciona um Flashcard na lista
   void add(Flashcard card) {
-    // Adiciona um Flashcard na lista
     this.flashcardList.add(card);
   }
 
+  /// Remove todas as instancias de um Flashcard da lista
   void remove(Flashcard card) {
-    // Remove todas as instancias de um Flashcard da lista
     int i = 0;
     bool contains = false;
     while (i < this.flashcardList.length && contains == false) {
@@ -53,16 +33,18 @@ class FlashcardList {
     }
   }
 
+  /// Substitui a lista de Flashcards por fl
   void setFlashcardList(List<Flashcard> fl) {
     this.flashcardList = List.from(fl);
   }
 
-  List getFlashcardList() {
+  /// Retorna a lista de Flashcards
+  List<Flashcard> getFlashcardList() {
     return this.flashcardList;
   }
 
+  /// Valida se já existe um Flashcard card na lista
   bool checkContains(Flashcard card) {
-    // Valida se já existe um Flashcard X na lista
     int i = 0;
     bool contains = false;
     while (i < this.flashcardList.length && contains == false) {
@@ -75,23 +57,23 @@ class FlashcardList {
     return contains;
   }
 
+  /// Retorna o tamanho atual da lista
   int lenght() {
-    // Retorna um int com o tamanho atual da lista
     return this.flashcardList.length;
   }
 
+  /// Retorna o Flashcard da posicao 'index' da lista
   Flashcard getCard(int index) {
-    // Retorna o Flashcard que está na posicao 'index' da List
     return this.flashcardList[index];
   }
 
+  /// Retorna o próximo Flashcard da List
   Flashcard getNextCard() {
-    // Retorna um Flashcard aleatório da List
     return this.flashcardList.first;
   }
 
+  /// Retorna um Flashcard aleatório da List
   Flashcard getRandomCard() {
-    // Retorna um Flashcard aleatório da List
     Random random = Random();
     int randomNumber = random.nextInt(this.flashcardList.length);
     return this.flashcardList[randomNumber];

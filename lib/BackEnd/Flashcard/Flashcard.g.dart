@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'Flashcard.dart';
+part of flashcard_package;
 
 // **************************************************************************
 // JsonSerializableGenerator
