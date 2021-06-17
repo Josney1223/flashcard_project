@@ -1,6 +1,6 @@
 part of flashcard_package;
 
-/// Classe que contém uma lista para armazenar Flashcards.
+/// Classe que contém uma lista para armazenar Flashcards
 @JsonSerializable(explicitToJson: true)
 class FlashcardList {
   /// A lista que contém os Flashcards

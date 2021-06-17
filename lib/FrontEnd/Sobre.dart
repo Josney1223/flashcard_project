@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 
-/*
-* Tela SOBBRE do aplicativo
-*/
+/// Classe que mostra a tela que passa informações do projeto e o nome dos criadores do projeto
+///
+/// A tela contém apenas um botão e texto, sendo que esse botão serve para retornar ao Menu
 class Sobre extends StatelessWidget {
-  //cria a tela que passa infromações do projeto e nome dos criadores do projeto
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +16,15 @@ class Sobre extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Image(
-                          image: AssetImage('assets/flash-cards.png'), filterQuality: FilterQuality.medium,
+                          image: AssetImage('assets/flash-cards.png'),
+                          filterQuality: FilterQuality.medium,
                           width: 100,
                         ),
                         SizedBox(height: 10),
-                        Text('KADO APP', style: TextStyle(fontWeight: FontWeight.bold),),
+                        Text(
+                          'KADO APP',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         SizedBox(height: 60),
                         Text(
                           'SOBRE O APP',
