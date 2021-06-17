@@ -1,9 +1,8 @@
-import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
+import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:json_annotation/json_annotation.dart';
-import '../Flashcard/Deck.dart';
 import 'SaveLoad/SaveLoadMobile.dart'
     if (dart.library.html) 'SaveLoad/SaveLoadWeb.dart';
 

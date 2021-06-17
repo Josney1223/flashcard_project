@@ -1,37 +1,25 @@
-import 'Flashcard.dart';
-import 'FlashcardList.dart';
+part of flashcard_package;
 
-import 'package:json_annotation/json_annotation.dart';
-part 'Deck.g.dart';
-
+/// Classe que gerencia um baralho completo de Flashcards
 @JsonSerializable(explicitToJson: true)
 class Deck {
-  /*
-    Classe que gerencia um baralho completo de Flashcards, sendo esse composto 
-    por um número X de Flashcards (this._qtdFlashcards). Ele possue um nome 
-    (this._deckName) para facilitar identificacao e se compoe por duas
-    FlashcardList (this._deck e this.grave).
-
-    Métodos:
-    -> void reset()
-    -> String getName()
-    -> int getQtd()
-    -> Flashcard pullCard()    
-    -> void insertCard(Flashcard card)
-    -> void insertCards(List<Flashcard> cards)
-    -> void removeCard(Flashcard card)
-    -> bool checkContains(Flashcard card)
-  */
-
+  /// O baralho
   @JsonKey(required: true, disallowNullValue: true)
   FlashcardList deck;
+
+  /// Uma cópia do baralho
   @JsonKey(required: false, disallowNullValue: true)
   FlashcardList deckCopy;
+
+  /// Quantidade de Flashcards no baralho
   @JsonKey(required: true, disallowNullValue: true)
   int qtdFlashcards;
+
+  /// Nome do baralho
   @JsonKey(required: true, disallowNullValue: true)
   String deckName;
 
+  /// Método construtor
   Deck(this.deckName, {this.deck, this.qtdFlashcards}) {
     this.deck = (deck == null) ? new FlashcardList() : deck;
     this.qtdFlashcards =
@@ -39,52 +27,50 @@ class Deck {
     this.deckCopy = new FlashcardList.fromJson(this.deck.toJson());
   }
 
+  /// Reinicia o deck usando como parametro o deckCopy
   void reset() {
-    //Reseta o deck
     this.deck.setFlashcardList(this.deckCopy.getFlashcardList());
-    print(this.deck.lenght().toString() +
-        " " +
-        this.deckCopy.lenght().toString());
   }
 
+  /// Insere um Flashcard em deck e em deckCopy
   void insertCard(Flashcard card) {
-    // Insere um Flashcard em this._deck
     this.deck.add(card);
     this.deckCopy.add(card);
     this.qtdFlashcards++;
   }
 
+  /// Insere uma lista de Flashcards em deck e em deckCopy
   void insertCards(FlashcardList cards) {
     for (var i = 0; i < cards.lenght(); i++) {
       this.deck.add(cards.getCard(i));
     }
   }
 
+  /// Remove um Flashcard do deck e do deckCopy
   void removeCard(Flashcard card) {
-    // Remove um Flashcard em this._deck
     this.reset();
     this.deck.remove(card);
     this.deckCopy.remove(card);
     this.qtdFlashcards--;
   }
 
+  /// Retorna o nome do baralho
   String getName() {
-    // Retorna o nome do baralho
     return this.deckName;
   }
 
+  /// Altera o nome do baralho
   void setName(String newName) {
-    // muda o nome do baralho
     this.deckName = newName;
   }
 
+  /// Retorna o tamanho do baralho
   int getQtd() {
-    // Retorna o tamanho do baralho
     return this.qtdFlashcards;
   }
 
+  /// Remove um Flashcard aleatoriamente do deck e o retorna
   Flashcard pullRandomCard() {
-    // Remove um Flashcard aleatoriamente do this._deck, insere ele no this._grave e o retorna
     if (this.deck.lenght() == 0) {
       return null;
     }
@@ -93,8 +79,8 @@ class Deck {
     return card;
   }
 
+  /// Remove o proximo Flashcard do deck e o retorna
   Flashcard pullCard() {
-    // Remove um Flashcard do this._deck, insere ele no this._grave e o retorna
     if (this.deck.lenght() == 0) {
       print("oi?");
       return null;
@@ -104,13 +90,13 @@ class Deck {
     return card;
   }
 
+  /// Valida se há uma cópia identica do Flashcard card dentro do deck
   bool checkContains(Flashcard card) {
-    // Retorna true caso tenha encontrado uma cópia identica do Flashcard
-    // dentro do deck
     this.reset();
     return this.deck.checkContains(card);
   }
 
+  /// Retorna uma copia do deck
   FlashcardList getCopy() {
     this.reset();
     return this.deck;

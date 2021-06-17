@@ -1,6 +1,5 @@
-import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
 import 'package:flutter/cupertino.dart';
-import 'Flashcard/Deck.dart';
+import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 
 class GameplayLoop extends ChangeNotifier {
   Deck _deck;

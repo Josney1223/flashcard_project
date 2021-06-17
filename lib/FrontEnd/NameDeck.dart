@@ -1,7 +1,7 @@
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
-import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
+import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 import 'package:provider/provider.dart';
 
 /*

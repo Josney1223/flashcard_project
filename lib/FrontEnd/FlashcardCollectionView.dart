@@ -1,7 +1,5 @@
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
-import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
-import 'package:flashcard_project/BackEnd/Flashcard/Flashcard.dart';
-import 'package:flashcard_project/BackEnd/Flashcard/FlashcardList.dart';
+import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 import 'package:flashcard_project/FrontEnd/Components/ScreenArgumentsFC.dart';
 import 'package:flashcard_project/FrontEnd/EditFlashcard.dart';
 import 'package:flashcard_project/FrontEnd/NameDeck.dart';

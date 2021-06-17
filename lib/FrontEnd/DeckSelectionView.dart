@@ -1,4 +1,4 @@
-import 'package:flashcard_project/BackEnd/Flashcard/Deck.dart';
+import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 import 'package:flashcard_project/BackEnd/GameplayLoop.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:flutter/material.dart';
