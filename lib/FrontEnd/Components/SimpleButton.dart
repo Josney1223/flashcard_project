@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-/*
-* Botão sem img, tem sombra
-*/
+/// Classe que cria um botão sem img, tem sombra
 class SimpleButton extends StatelessWidget {
   final String _title;
   final Color _color;
@@ -13,21 +11,19 @@ class SimpleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(30),
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-          primary: _color, 
-          elevation: 10, 
-          shadowColor: Colors.grey, 
-          padding: EdgeInsets.all(10),
-          textStyle: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          )
-        ),
-        child: Text(_title),
-      )
-    );
+        padding: EdgeInsets.all(30),
+        child: ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+              primary: _color,
+              elevation: 10,
+              shadowColor: Colors.grey,
+              padding: EdgeInsets.all(10),
+              textStyle: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              )),
+          child: Text(_title),
+        ));
   }
 }

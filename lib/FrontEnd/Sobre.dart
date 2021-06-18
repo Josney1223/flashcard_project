@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 
+<<<<<<< Updated upstream
 /// Classe que mostra a tela que passa informações do projeto e o nome dos criadores do projeto
 ///
 /// A tela contém apenas um botão e texto, sendo que esse botão serve para retornar ao Menu
+=======
+//cria a tela que passa infromações do projeto e nome dos criadores do projeto com um botão de voltar
+>>>>>>> Stashed changes
 class Sobre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-/*
-* Botão com img
-*/
+/// Classe que cria um botão com imagem
 class MenuButtonWithIcon extends StatelessWidget {
   final String _title;
   final Color _color;
@@ -33,9 +31,7 @@ class MenuButtonWithIcon extends StatelessWidget {
   }
 }
 
-/*
-* Caixa que possui uma Imagem e um Botão, alinhados verticalmente
-*/
+/// Classe que cria uma caixa que possui uma Imagem e um Botão, alinhados verticalmente
 class IconAndTextBox extends StatelessWidget {
   final String _title;
   final String _imgPath;
@@ -50,7 +46,12 @@ class IconAndTextBox extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(image: AssetImage(this._imgPath), width: 50.0, height: 50.0, filterQuality: FilterQuality.medium,),
+            Image(
+              image: AssetImage(this._imgPath),
+              width: 50.0,
+              height: 50.0,
+              filterQuality: FilterQuality.medium,
+            ),
             SizedBox(height: 10),
             Text(this._title),
           ],

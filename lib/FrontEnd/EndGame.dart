@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Menu.dart';
 
-/*
-Tela de fim de jogo
-*/
+/// CLasse que cria a tela de fim de jogo mostrandoo a quantidade de acertos e erros
 class EndGame extends StatelessWidget {
-  //cria a tela de fim de jogo mostrandoo a quantidade de acertos e erros
   static const routeName = '/endgame';
 
   @override
@@ -57,6 +54,7 @@ class EndGame extends StatelessWidget {
   }
 }
 
+/// Classe que cria o botão para voltar diretamente para o Menu
 class MenuButton extends StatelessWidget {
   static const routeName = '/MenuButton';
   @override

@@ -6,11 +6,8 @@ import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'InGame.dart';
 
-/*
-* Tela de seleção de deck (Selecione um Deck) com listagem dos decks
-*/
+/// Classe que cria a tela de seleção de deck e com um botão de voltar uma tela
 class DeckSelectionView extends StatelessWidget {
-  //cria a tela de seleção  de deck com os decks importandos da coleção
   static const routeName = '/DeckSelectionView';
 
   @override
@@ -44,6 +41,7 @@ class DeckSelectionView extends StatelessWidget {
   }
 }
 
+/// Classe que puxa os decks da coleção de decks
 class DeckListView extends StatelessWidget {
   List<Deck> deckList;
 

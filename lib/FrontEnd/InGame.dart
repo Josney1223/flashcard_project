@@ -6,9 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 import 'package:provider/provider.dart';
 
-/*
-* Tela de dentro do jogo
-*/
+/// Classe que gera o StatefulWidget para ser usado como base pela classe _InGameState
 class InGame extends StatefulWidget {
   static const routeName = '/InGame';
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
@@ -17,13 +15,17 @@ class InGame extends StatefulWidget {
   _InGameState createState() => _InGameState();
 }
 
+/// Classe que faz a tela do jogo com o nome do deck, score, o flashcard com animação e as opções de acertar ou errar e botão de voltar
+///
+/// Cria um ToggleButton para escolher entre ordem aleatória ou ordenada do deck
+/// Cria uma carta interativa com animação para representar o FlashCard virando
+/// Mostra dois novos botões após virar a primeira vez a carta para falar se acertou ou errou
 class _InGameState extends State<InGame> {
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
   bool isVisible = false;
   List<bool> isSelected = [false];
 
   void CheckEndGame(BuildContext context) {
-    // Puxa a proxima carta e garante que o sistema ira para a tela final caso termine o baralho
     if (isSelected[0]) {
       Provider.of<GameplayLoop>(context, listen: false).nextRandomCard();
     } else {
@@ -35,14 +37,12 @@ class _InGameState extends State<InGame> {
   }
 
   Future<void> WidgetState(bool hit) {
-    // Valida se acertou ou errou
     if (hit) {
       Provider.of<GameplayLoop>(context, listen: false).increaseHit();
     } else {
       Provider.of<GameplayLoop>(context, listen: false).increaseMiss();
     }
 
-    // Checa se a carta está virada para a frente ou para tras
     if (!cardKey.currentState.isFront) {
       cardKey.currentState.toggleCard();
       new Timer(new Duration(milliseconds: 300), () {
@@ -57,7 +57,6 @@ class _InGameState extends State<InGame> {
 
   @override
   Widget build(BuildContext context) {
-    // faz a tela do jogo com o nome do deck, score, o flashcard com animação e as opções de acertar ou errar e botão de voltar
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
