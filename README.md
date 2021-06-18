@@ -4,8 +4,8 @@ Uma aplicação desktop e mobile de flashcards
 [Design e Fluxo da aplicação](https://drive.google.com/drive/folders/1KtFBUvLtwbJCGTYm7PRz12MdVJRx7f4L?usp=sharing)<br/>
 [Flutter online documentation](https://flutter.dev/docs)<br/>
 
-:page_facing_up: [Website](https://google.com.br)<br />
-:computer: [Documentação](https://google.com.br)
+:computer: [Website](https://google.com.br)<br />
+:page_facing_up: [Documentação](https://google.com.br)
 
 ## Grupo
 Caroline Yumi Uehara<br/>
