@@ -4,7 +4,7 @@ import 'package:flashcard_project/FrontEnd/Components/GoBackButton.dart';
 /// Classe que mostra a tela que passa informações do projeto e o nome dos criadores do projeto
 ///
 /// A tela contém apenas um botão e texto, sendo que esse botão serve para retornar ao Menu
-class Sobre extends StatelessWidget {
+class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

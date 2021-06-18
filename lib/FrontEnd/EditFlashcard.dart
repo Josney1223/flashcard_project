@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 import 'package:provider/provider.dart';
 
-/*
-* Tela de edição de flashcards
-*/
+/// Classe onde é possível editar um flashcard (frente e verso)
 class EditFlashcard extends StatelessWidget {
   static const routeName = '/editFlashcard';
 
@@ -25,6 +23,7 @@ class EditFlashcard extends StatelessWidget {
   }
 }
 
+/// Classe customizada para transformar um widget em stateful
 class MyCustomForm extends StatefulWidget {
   Deck deck;
   Flashcard flashcardReceived;
@@ -39,6 +38,7 @@ class MyCustomForm extends StatefulWidget {
       EditFlashcardBody(this.deck, this.flashcardReceived);
 }
 
+/// Classe que monta o componente de input de texto
 class EditFlashcardBody extends State<MyCustomForm> {
   var myControllerFrente = TextEditingController();
   var myControllerVerso = TextEditingController();

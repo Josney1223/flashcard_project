@@ -1,26 +1,18 @@
-## Getting Started
+## Projeto de Arquitetura de Software: KADO APP :label:
+Uma aplicação desktop e mobile de flashcards
 
-This project is a starting point for a Flutter application.
+[Design e Fluxo da aplicação](https://drive.google.com/drive/folders/1KtFBUvLtwbJCGTYm7PRz12MdVJRx7f4L?usp=sharing)
+[Flutter online documentation](https://flutter.dev/docs)
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-# Projeto de Arquitetura de Software: flashcard_project
-Aplicação desktop e mobile de Flashcards
-
-https://drive.google.com/drive/folders/1KtFBUvLtwbJCGTYm7PRz12MdVJRx7f4L?usp=sharing
+![alt text](https://media.tenor.com/images/bb3cf989f0523bbc097377be58e7bbd5/tenor.gif)
 
 ## Grupo
-Caroline, José, Lessa e Lucas
+Caroline Yumi Uehara 
+José Augusto Barros Minhoto
+Leonardo Lopes Lessa da Fonseca
+Lucas Kenji Uezu
 
 ## Requisitos
-
 1. Carregar um conjunto contendo 10 flashcards, pelo menos
 2. Virar um flashcard a cada solicitação do usuário
 3. Passar para outro flashcard a pedido do usuário
@@ -31,7 +23,12 @@ Caroline, José, Lessa e Lucas
 8. Permitir que um usuário troque flashcards com outro usuário
 9. A aplicação deverá "animar" um flashcard sempre que ele for virado
 
-## Datas de entrega
-* 14/04 | 21/04 - Apresentação da vista lógica
-* 09/06 | 16/06 - Apresentação da aplicação
-
+## O que foi utilizado?
+**AdobeXD**: elaboração do design das telas
+**GitHub**: local para armazenar o código do projeto
+**Git**: utilizado para facilitar a organização e atualização do código
+**Sourcetree**: software utilizado para facilitar na utilização e entendimento do Git
+**Flutter**: framework utilizado para desenvolver a aplicação em linguagem Dart
+**Visual Studio Code**: IDE utilizada para escrever o código
+**Android Studio**: foi utilizado o emulador de smartphones Android para testarmos a aplicação
+**Discord**: canal de comunicação e local das reuniões do grupo

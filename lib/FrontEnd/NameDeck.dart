@@ -4,9 +4,7 @@ import 'package:flashcard_project/FrontEnd/Components/ScreenArguments.dart';
 import 'package:flashcard_project/BackEnd/Flashcard/Flashcard_Package.dart';
 import 'package:provider/provider.dart';
 
-/*
-* Tela de persistencia de decks
-*/
+/// Classe onde o usuário pode editar o nome de um deck ou criar um novo
 class NameDeck extends StatelessWidget {
   static const routeName = '/persistDeck';
 
@@ -23,6 +21,7 @@ class NameDeck extends StatelessWidget {
   }
 }
 
+/// Classe customizada para criar um stateful widget, necessário para o widget de input do usuário
 class MyCustomForm extends StatefulWidget {
   Deck deckReceived;
 
@@ -34,6 +33,7 @@ class MyCustomForm extends StatefulWidget {
   PersistDeckBody createState() => PersistDeckBody(this.deckReceived);
 }
 
+/// Classe para montagem do widget de input de texto
 class PersistDeckBody extends State<MyCustomForm> {
   var myController = TextEditingController();
   String oldName;

@@ -33,7 +33,7 @@ class Menu extends StatelessWidget {
                       '/deckCollection'),
                   SizedBox(height: 25),
                   MenuButtonWithIcon('SOBRE', Color.fromRGBO(255, 224, 162, 1),
-                      'assets/information-colorful.png', '/sobre'),
+                      'assets/information-colorful.png', '/about'),
                 ]))));
   }
 }

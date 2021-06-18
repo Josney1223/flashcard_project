@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'Menu.dart';
 
-/// CLasse que cria a tela de fim de jogo mostrandoo a quantidade de acertos e erros
+/// Classe que cria a tela de fim de jogo mostrando a quantidade de acertos e erros
 class EndGame extends StatelessWidget {
   static const routeName = '/endgame';
 

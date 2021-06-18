@@ -8,9 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'package:clipboard/clipboard.dart';
 
-/*
-* Tela de visualização de decks
-*/
+/// Classe onde os decks são listados em uma grid
 class DeckCollectionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -130,8 +128,10 @@ class DeckCollectionView extends StatelessWidget {
   }
 }
 
+/// Enumeração das ações possíveis de um deck
 enum selectedDeckActions { EDITAR, DELETAR, EXPORTAR }
 
+/// Widget de listagem dos decks
 class DeckListigView extends StatelessWidget {
   List<Deck> deckList;
 
@@ -254,6 +254,7 @@ class DeckListigView extends StatelessWidget {
   }
 }
 
+/// Classe customizada para deixar o widget _CopyBoxState stateful
 class CopyBox extends StatefulWidget {
   String s;
 
@@ -264,6 +265,7 @@ class CopyBox extends StatefulWidget {
   _CopyBoxState createState() => _CopyBoxState(this.s);
 }
 
+/// Classe onde é montado o componente com a opção de copiar da área de transferência
 class _CopyBoxState extends State<CopyBox> {
   String s;
 
@@ -301,11 +303,13 @@ class _CopyBoxState extends State<CopyBox> {
   }
 }
 
+/// Classe da customizada para deixar o widget stateful
 class PasteBox extends StatefulWidget {
   @override
   _PasteBoxState createState() => _PasteBoxState();
 }
 
+/// Classe onde é montado componente de colar da área de transferência
 class _PasteBoxState extends State<PasteBox> {
   TextEditingController field = TextEditingController();
   String pasteValue = '';

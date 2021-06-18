@@ -9,12 +9,13 @@ import 'package:flashcard_project/FrontEnd/InGame.dart';
 import 'package:flutter/material.dart';
 import 'package:flashcard_project/FrontEnd/DeckSelectionView.dart';
 import 'package:flashcard_project/FrontEnd/Menu.dart';
-import 'package:flashcard_project/FrontEnd/Sobre.dart';
+import 'package:flashcard_project/FrontEnd/About.dart';
 import 'package:flashcard_project/FrontEnd/NameDeck.dart';
 import 'package:provider/provider.dart';
 import 'package:flashcard_project/BackEnd/Collection/Collection.dart';
 import 'FrontEnd/EndGame.dart';
 
+/// Função principal do programa
 void main() {
   runApp(
     MultiProvider(
@@ -29,6 +30,7 @@ void main() {
   );
 }
 
+/// Classe onde é definido o título da aplicação, a tela inicial e as rotas de navegação das telas
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       home: Menu(),
       routes: {
         '/deckSelection': (context) => DeckSelectionView(),
-        '/sobre': (context) => Sobre(),
+        '/about': (context) => About(),
         '/deckCollection': (context) => DeckCollectionView(),
         '/menu': (context) => Menu(),
         EndGame.routeName: (context) => EndGame(),

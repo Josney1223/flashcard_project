@@ -82,7 +82,6 @@ class Deck {
   /// Remove o proximo Flashcard do deck e o retorna
   Flashcard pullCard() {
     if (this.deck.lenght() == 0) {
-      print("oi?");
       return null;
     }
     Flashcard card = this.deck.getNextCard();

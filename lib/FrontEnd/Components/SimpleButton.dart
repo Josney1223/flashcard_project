@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Classe que cria um botão sem img, tem sombra
+/// Classe que cria um botão simples sem imagem, tem sombra
 class SimpleButton extends StatelessWidget {
   final String _title;
   final Color _color;

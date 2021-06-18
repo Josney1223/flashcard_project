@@ -97,6 +97,7 @@ class FlashcardCollectionView extends StatelessWidget {
   }
 }
 
+/// Enumeração das ações possíveis para um flashcard
 enum selectedFlashcardActions { EDITAR, DELETAR }
 
 // Ver todos os flashcards de um Deck
