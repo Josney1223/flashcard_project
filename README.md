@@ -1,11 +1,11 @@
-## Projeto de Arquitetura de Software: KADO APP :label:
+## Projeto de Arquitetura de Software: KADO APP
 Uma aplicação desktop e mobile de flashcards
 
 [Design e Fluxo da aplicação](https://drive.google.com/drive/folders/1KtFBUvLtwbJCGTYm7PRz12MdVJRx7f4L?usp=sharing)<br/>
 [Flutter online documentation](https://flutter.dev/docs)<br/>
 
-:computer: [Website](https://google.com.br)<br />
-:page_facing_up: [Documentação](https://google.com.br)
+[Website](https://google.com.br)<br />
+[Documentação](https://google.com.br)
 
 ## Grupo
 Caroline Yumi Uehara<br />
