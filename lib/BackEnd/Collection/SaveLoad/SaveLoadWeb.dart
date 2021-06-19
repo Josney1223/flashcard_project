@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'dart:html' as html;
 import 'package:file_picker/file_picker.dart';
 
+/// Faz o download de uma coleção de decks no computador.
 Future<void> save(String jsonDecks) async {
-  // prepare
+  // Inicializa as variaveis para fazer o download
   final bytes = utf8.encode(jsonDecks);
   final blob = html.Blob([bytes]);
   final url = html.Url.createObjectUrlFromBlob(blob);
@@ -14,14 +15,15 @@ Future<void> save(String jsonDecks) async {
     ..download = 'KadoCollection.json';
   html.document.body.children.add(anchor);
 
-  // download
+  // Download do arquivo
   anchor.click();
 
-  // cleanup
+  // O download acabou, então limpa
   html.document.body.children.remove(anchor);
   html.Url.revokeObjectUrl(url);
 }
 
+/// Carrega uma coleção de decks que está no computador.
 Future<String> load() async {
   FilePickerResult result = await FilePicker.platform
       .pickFiles(type: FileType.custom, allowedExtensions: ['json']);
@@ -30,7 +32,7 @@ Future<String> load() async {
     try {
       jsonString = new String.fromCharCodes(result.files.first.bytes);
     } catch (e) {
-      // Se não foi enviado nada ou der um erro de conversão retornar vazia
+      // Se não foi enviado nada ou der um erro de conversão retornar ''
     }
   }
   return jsonString;
