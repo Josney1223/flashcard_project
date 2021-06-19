@@ -8,10 +8,10 @@ Uma aplicação desktop e mobile de flashcards
 :page_facing_up: [Documentação](https://google.com.br)
 
 ## Grupo
-Caroline Yumi Uehara<br/>
-José Augusto Barros Minhoto<br/>
-Leonardo Lopes Lessa da Fonseca<br/>
-Lucas Kenji Uezu<br/>
+Caroline Yumi Uehara<br />
+José Augusto Barros Minhoto<br />
+Leonardo Lopes Lessa da Fonseca<br />
+Lucas Kenji Uezu<br />
 
 ![alt text](https://media.tenor.com/images/bb3cf989f0523bbc097377be58e7bbd5/tenor.gif)
 
@@ -29,27 +29,11 @@ Lucas Kenji Uezu<br/>
 ## O que foi utilizado?
 
 &nbsp;
-**AdobeXD**: elaboração do design das telas
-
-&nbsp;
-**GitHub**: local para armazenar o código do projeto
-
-&nbsp;
-**Git**: utilizado para facilitar a organização e atualização do código
-
-&nbsp;
-**Sourcetree**: software utilizado para facilitar na utilização e entendimento do Git
-
-&nbsp;
-**Flutter**: framework utilizado para desenvolver a aplicação em linguagem Dart
-
-&nbsp;
-**Visual Studio Code**: IDE utilizada para escrever o código
-
-&nbsp;
-**Android Studio**: foi utilizado o emulador de smartphones Android para testarmos a aplicação
-
-&nbsp;
-**Discord**: canal de comunicação e local das reuniões do grupo
-
-&nbsp;
+**AdobeXD**: elaboração do design das telas<br />
+**GitHub**: local para armazenar o código do projeto<br />
+**Git**: utilizado para facilitar a organização e atualização do código<br />
+**Sourcetree**: software utilizado para facilitar na utilização e entendimento do Git<br />
+**Flutter**: framework utilizado para desenvolver a aplicação em linguagem Dart<br />
+**Visual Studio Code**: IDE utilizada para escrever o código<br />
+**Android Studio**: foi utilizado o emulador de smartphones Android para testarmos a aplicação<br />
+**Discord**: canal de comunicação e local das reuniões do grupo<br />
