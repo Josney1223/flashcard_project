@@ -27,9 +27,8 @@ Lucas Kenji Uezu<br/>
 9. A aplicação deverá "animar" um flashcard sempre que ele for virado
 
 ## O que foi utilizado?
+&nbsp;
 **AdobeXD**: elaboração do design das telas
-
-
 &nbsp;
 **GitHub**: local para armazenar o código do projeto
 
