@@ -26,9 +26,7 @@ Lucas Kenji Uezu<br />
 8. Permitir que um usuário troque flashcards com outro usuário
 9. A aplicação deverá "animar" um flashcard sempre que ele for virado
 
-## O que foi utilizado?
-
-&nbsp;
+## O que foi utilizado?<br />
 **AdobeXD**: elaboração do design das telas<br />
 **GitHub**: local para armazenar o código do projeto<br />
 **Git**: utilizado para facilitar a organização e atualização do código<br />
