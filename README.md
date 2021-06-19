@@ -27,11 +27,35 @@ Lucas Kenji Uezu<br/>
 9. A aplicação deverá "animar" um flashcard sempre que ele for virado
 
 ## O que foi utilizado?
-#### **AdobeXD**: elaboração do design das telas
-#### **GitHub**: local para armazenar o código do projeto
-#### **Git**: utilizado para facilitar a organização e atualização do código
-#### **Sourcetree**: software utilizado para facilitar na utilização e entendimento do Git
-#### **Flutter**: framework utilizado para desenvolver a aplicação em linguagem Dart
-#### **Visual Studio Code**: IDE utilizada para escrever o código
-#### **Android Studio**: foi utilizado o emulador de smartphones Android para testarmos a aplicação
-#### **Discord**: canal de comunicação e local das reuniões do grupo
+**AdobeXD**: elaboração do design das telas
+
+
+&nbsp;
+**GitHub**: local para armazenar o código do projeto
+
+
+&nbsp;
+**Git**: utilizado para facilitar a organização e atualização do código
+
+
+&nbsp;
+**Sourcetree**: software utilizado para facilitar na utilização e entendimento do Git
+
+
+&nbsp;
+**Flutter**: framework utilizado para desenvolver a aplicação em linguagem Dart
+
+
+&nbsp;
+**Visual Studio Code**: IDE utilizada para escrever o código
+
+
+&nbsp;
+**Android Studio**: foi utilizado o emulador de smartphones Android para testarmos a aplicação
+
+
+&nbsp;
+**Discord**: canal de comunicação e local das reuniões do grupo
+
+
+&nbsp;
