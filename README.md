@@ -4,7 +4,7 @@ Uma aplicação desktop e mobile de flashcards
 [Design e Fluxo da aplicação](https://drive.google.com/drive/folders/1KtFBUvLtwbJCGTYm7PRz12MdVJRx7f4L?usp=sharing)<br/>
 [Flutter online documentation](https://flutter.dev/docs)<br/>
 
-[Website](https://josney1223.github.io/github.io/)<br />
+[Website](https://josney1223.github.io/flashcard_app/#/)<br />
 [Documentação](https://josney1223.github.io/flashcard_doc/)
 
 ## Grupo
