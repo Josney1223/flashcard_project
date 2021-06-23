@@ -5,7 +5,7 @@ Uma aplicação desktop e mobile de flashcards
 [Flutter online documentation](https://flutter.dev/docs)<br/>
 
 [Website](https://josney1223.github.io/github.io/)<br />
-[Documentação](https://google.com.br)
+[Documentação](https://josney1223.github.io/flashcard_doc/)
 
 ## Grupo
 Caroline Yumi Uehara<br />
